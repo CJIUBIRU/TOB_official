@@ -15,6 +15,8 @@ import Navbar from "../elements/navbar";
 import Modal from "react-bootstrap/Modal";
 import QrcodeImg from "../img/qrcode.png";
 
+import QRCode from "qrcode.react";
+
 function Task({
   availability,
   charity,
@@ -82,7 +84,7 @@ function Task({
                   {store}
                   {/* </a> */}
                   <br />
-                  目前可領取／已領取數量：{availability}／{received}
+                  目前可領取／已領取數量：{availability}2／{received}
                   {/* <br /> */}
                   {/* 目前數量：{received} */}
                 </Card.Text>
@@ -109,7 +111,7 @@ function Task({
                     marginTop: "5px",
                   }}
                 >
-                  查看兌換條碼
+                  查看取物條碼
                 </b>
                 <p
                   style={{
@@ -120,43 +122,25 @@ function Task({
                   請在12/20 14:45 前領取完成。
                 </p>
               </Nav.Link>
-              <div style={{marginLeft: "52px"}}>
-                <Nav.Link
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    color: "white",
-                    backgroundColor: "#002b5b",
-                    width: "100px",
-                    height: "35px",
-                    lineHeight: "35px",
-                    borderRadius: "30px",
-                  }}
-                >
-                  更多資訊
-                </Nav.Link>
-              </div>
             </Card>
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>兌換條碼</Modal.Title>
+              <Modal.Title>取物條碼</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ textAlign: "center" }}>
-              <img
+              <QRCode style={{ width: "200px", height: "200px" }}value={id} />
+              {/* <img
                 src={QrcodeImg}
                 alt="qrcode"
                 style={{ width: "200px", height: "200px" }}
-              ></img>
+              ></img> */}
               <div style={{ color: "#e74a3b" }}>
                 ※請注意：
                 <br />
                 1. 請至合作店家櫃台，出示此QRCode，即可領取物資。
-                <br />
-                2. 物資領取期限：{" "}
-                <i>
-                  <u>2022-12-20 14:45:03</u>
-                </i>
+                {/* <br />
+                2. 物資領取期限：{" "}<i><u>2022-12-20 14:45:03</u></i> */}
               </div>
             </Modal.Body>
             <Modal.Footer>
@@ -195,7 +179,7 @@ function AllQrcode() {
   return (
     <div>
       <Navbar />
-      <TitleSec name="我的兌換條碼" />
+      <TitleSec name="我的取件條碼" />
       {details.map((item) => (
         <Task
           id={item.id}
