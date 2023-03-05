@@ -62,6 +62,9 @@ import FaqAdmin from "./FaqAdmin";
 import TakeGoods from "./takeGoods";
 import Gain from "./Gain";
 import Response from "./Response";
+import ExchangeGoods from "./ExchangeGoods";
+import ExchangeGoodsSec from "./ExchangeGoodsSec";
+import ExchangeGoodsThird from "./ExchangeGoodsThird";
 
 function App() {
   return (
@@ -130,6 +133,9 @@ function App() {
           <Route path="/takeGoods" element={<TakeGoods />} />
           <Route path="/gain" element={<Gain />} />
           <Route path="/response" element={<Response />} />
+          <Route path="/exchangeGoods" element={<ExchangeGoods />} />
+          <Route path="/exchangeGoodsSec" element={<ExchangeGoodsSec />} />
+          <Route path="/exchangeGoodsThird" element={<ExchangeGoodsThird />} />
         </Routes>
       </BrowserRouter>
     </div>

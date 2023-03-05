@@ -274,7 +274,7 @@ function Task({ id, email, level, name }) {
                     <Col style={{ padding: "0px", paddingLeft: "10px" }}>
                       <Nav.Link
                         as={Link}
-                        to="/takeGoods"
+                        to="/exchangeGoods"
                         style={{
                           color: "#ffffff",
                           backgroundColor: "#002B5B",
