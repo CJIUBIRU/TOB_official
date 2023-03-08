@@ -129,7 +129,7 @@ function CharityInfo() {
       {/* <form className='form' onSubmit={handleSubmit}> */}
 
       <form className="form">
-        <TitleSec name="基本資料設定" />
+        <TitleSec name="基本資料設定" color="#90AACB"/>
         <Container>
         <Stepper
           steps={[

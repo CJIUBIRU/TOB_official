@@ -17,7 +17,7 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSec name="修改我的需求" />
+      <TitleSec name="修改我的需求" color="#90AACB"/>
       <Container>
         <div>
           <UpdateMyProduct />

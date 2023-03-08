@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 // import img from "../img/tablet.jpg";
 
-function DemandStep1({ id, name, store, cart, setCart }) {
+function DemandStep1({ id, name, store, cart, setCart, pic }) {
   const card = {
     marginBottom: "15px",
     marginLeft: "15px",
@@ -52,7 +52,7 @@ function DemandStep1({ id, name, store, cart, setCart }) {
         width: "400px",
         margin: "15px",
       });
-      cart.push({ id, name, store });
+      cart.push({ id, name, store, pic });
       localStorage.setItem("cart", JSON.stringify(cart));
       setState(true);
     } else {
@@ -78,7 +78,7 @@ function DemandStep1({ id, name, store, cart, setCart }) {
           <Card.Img
             style={goodsImgStyle}
             variant="top"
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg"
+            src={pic}
           />
           <Card.Body style={contentStyle}>
             <Card.Title>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { db, storage } from "../utils/firebase";
 import Navbar from "../elements/navbar";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import { Card, FormControl } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import TitleStepAdmin from "../elements/titleStepAdmin";
+import TitleStep from "../elements/titleStep";
 import { Link } from "react-router-dom";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
@@ -98,7 +98,7 @@ function UploadGoods() {
   return (
     <div style={{ marginBottom: "50px" }}>
       <Navbar />
-      <TitleSecAdmin name="上架物資" />
+      <TitleSec name="上架物資" color="#7BBFBA"/>
       <Container style={{ marginBottom: "15px" }}>
         <Stepper
           steps={[
@@ -110,7 +110,7 @@ function UploadGoods() {
           activeStep={0}
         />
       </Container>
-      <TitleStepAdmin name="STEP1 - 上傳圖片" />
+      <TitleStep color="#069A8E" name="STEP1 - 上傳圖片" />
       <br />
       <Container>
         <Row>

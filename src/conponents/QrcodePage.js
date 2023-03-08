@@ -17,7 +17,7 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSec name="取件條碼" />
+      <TitleSec name="取件條碼" color="#90AACB"/>
       <Container>
         <div>
           <Qrcode />

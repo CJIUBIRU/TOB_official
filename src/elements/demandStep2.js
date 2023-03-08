@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 
-function DemandStep2({ id, name, store, user, demandList, setDemandList }) {
+function DemandStep2({ id, name, store, user, demandList, setDemandList, pic }) {
   const card = {
     marginBottom: "20px",
     marginLeft: "15%",
@@ -137,6 +137,7 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList }) {
           id,
           name,
           store,
+          pic,
           count: value,
           demandInfo: demandInfoValue,
           charityName: charityName2,
@@ -149,6 +150,7 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList }) {
           id,
           name,
           store,
+          pic,
           count: value,
           demandInfo: demandInfoValue,
           charityName: charityName2,
@@ -164,7 +166,7 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList }) {
         <Card.Img
           style={goodsImgStyle}
           variant="top"
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg"
+          src={pic}
         />
         <Card.Body style={contentStyle}>
           <Card.Title>

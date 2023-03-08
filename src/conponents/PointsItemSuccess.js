@@ -45,7 +45,7 @@ function PointsItemSuccess() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSec name="商品兌換成功" />
+      <TitleSec name="商品兌換成功" color="#F4D19B"/>
       <Card style={cardStyle}>
         <Card.Body>
           <SuccessInfo

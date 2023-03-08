@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../elements/navbar";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
@@ -44,8 +44,8 @@ function UpdateStores() {
     try {
       await updateDoc(taskDocRef, {
         name: values.name,
-        address: values.address,
-        phone: values.phone,
+        // address: values.address,
+        // phone: values.phone,
       });
       alert("修改成功");
       navigate("/allStores");
@@ -69,7 +69,7 @@ function UpdateStores() {
   return (
     <div>
       <Navbar />
-      <TitleSecAdmin name="修改合作店家資料" />
+      <TitleSec name="修改合作店家資料" color="#7BBFBA"/>
       <br />
       <Container>
         <div>
@@ -85,7 +85,7 @@ function UpdateStores() {
                     name="name"
                     value={values.name}
                   />
-                  <FormControl
+                  {/* <FormControl
                     style={{ margin: "30px 30px 0 30px", width: "90%" }}
                     placeholder="輸入店家地址（如：242新北市新莊區中正路510號）"
                     onChange={handleChange}
@@ -100,7 +100,7 @@ function UpdateStores() {
                     type="text"
                     name="phone"
                     value={values.phone}
-                  />
+                  /> */}
                   <button type="submit" style={subBtnStyle}>
                     送出修改
                   </button>

@@ -78,7 +78,7 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSec name="刊登物資需求" />
+      <TitleSec name="刊登物資需求" color="#90AACB"/>
       <Container>
       <Stepper
           steps={[
@@ -97,6 +97,7 @@ function UploadDemand() {
                 key={index}
                 id={item.id}
                 name={item.name}
+                pic={item.pic}
                 store={item.store}
                 demandList={demandList}
                 setDemandList={setDemandList}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../elements/navbar";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import Card from "react-bootstrap/Card";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -64,8 +64,8 @@ function Stores({ id, name, phone, address, num }) {
       <tr>
         <td>{num}</td>
         <td>{name}</td>
-        <td>{address}</td>
-        <td>{phone}</td>
+        {/* <td>{address}</td>
+        <td>{phone}</td> */}
         <td>
           <Button
             style={editIconStyle}
@@ -105,7 +105,7 @@ function UploadGoods() {
   }
   const [details, setDetails] = useState([]);
   const cardStyle = {
-    width: "100%",
+    width: "1100px",
     color: "black",
     left: "50%",
     marginTop: "35px",
@@ -132,7 +132,7 @@ function UploadGoods() {
   return (
     <div>
       <Navbar />
-      <TitleSecAdmin name="合作店家一覽表" />
+      <TitleSec name="合作店家一覽表" color="#7BBFBA" />
       <br />
       <Container>
         <Card style={cardStyle}>
@@ -142,9 +142,9 @@ function UploadGoods() {
                 <tr>
                   <th>#</th>
                   <th>店家名稱</th>
-                  <th>店家地址</th>
-                  <th>店家電話</th>
-                  <th>修改／刪除</th>
+                  {/* <th>店家地址</th>
+                  <th>店家電話</th> */}
+                  <th>修改資訊／撤銷</th>
                 </tr>
               </thead>
               <tbody>

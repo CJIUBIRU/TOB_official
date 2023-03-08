@@ -7,14 +7,14 @@ import Col from "react-bootstrap/Col";
 
 import Navbar from "../elements/navbar";
 
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 
 import ButtonLink from "../elements/button";
 
 import NavbarHome from "../elements/navbarHome";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
-import ButtonMember from "../elements/buttonMember";
+import Button from "../elements/button";
 
 function PointsItemDetails() {
   const [user] = useAuthState(auth);
@@ -73,7 +73,7 @@ function PointsItemDetails() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecMember name="商品介紹" />
+      <TitleSec name="商品介紹" color="#F4D19B"/>
       <Container>
         <Card style={cardStyle}>
           <Card.Body>
@@ -116,12 +116,12 @@ function PointsItemDetails() {
                 <tr>
                   <td style={{ paddingRight: "10px" }}>
                     <div style={btnStyle}>
-                      <ButtonMember to="/pointsItem" name="返回" />
+                      <Button color="#F58D59" to="/pointsItem" name="返回" />
                     </div>
                   </td>
                   <td style={{ paddingLeft: "10px" }}>
                     <div style={btnStyle}>
-                      <ButtonMember to="/pointsItemSuccess" name="確認" />
+                      <Button color="#F58D59" to="/pointsItemSuccess" name="確認" />
                     </div>
                   </td>
                 </tr>

@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import React from "react";
 import "../App.css";
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 import ProcessList from "./ProcessList";
 import Navbar from "../elements/navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -17,7 +17,7 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSecMember name="認購進度追蹤" />
+      <TitleSec name="認購進度追蹤" color="#F4D19B"/>
       <Container>
         <div>
           <ProcessList />

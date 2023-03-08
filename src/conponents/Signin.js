@@ -11,7 +11,7 @@ import { useState } from "react";
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
-import logo from "../img/coffee.png";
+import logo from "../img/logo.png";
 import bgphoto from "../img/bg_chiheisen_green.jpg";
 
 function Login() {
@@ -64,11 +64,11 @@ function Login() {
   const loginCardStyle = {
     backgroundColor: "#D7E9F7",
     width: "450px",
-    height: "510px",
+    height: "480px",
     position: "absolute",
     top: "50%",
     left: "75%",
-    margin: "-280px 0px 0px -225px",
+    margin: "-230px 0px 0px -225px",
     // boxShadow: "0px 0px 4px 4px #f0f0f0",
     boxShadow: "5px 5px 10px gray",
     // boxShadow: "10px 10px 15px lightgray",
@@ -91,7 +91,7 @@ function Login() {
     position: "absolute",
     top: "50%",
     left: "50%",
-    margin: "-200px 0px 0px -190px",
+    margin: "-180px 0px 0px -190px",
   };
   const titleStyle = {
     color: "#002B5B",
@@ -116,11 +116,11 @@ function Login() {
     flexDirection: "row",
   };
   const loginLogoStyle = {
-    width: "650px",
-    height: "600px",
+    width: "700px",
+    height: "700px",
     position: "absolute",
     top: "50%",
-    margin: "-300px 0px 0px 50px",
+    margin: "-350px 0px 0px 40px",
   };
   const loginPageStyle = {
     // width: "50%",
@@ -206,7 +206,7 @@ function Login() {
               />
 
               <div style={btnContentStyle}>
-                <ButtonLink to="/signUp" name="前往註冊" />
+                <ButtonLink to="/signUp" name="前往註冊" color="#002b5b" />
                 &nbsp;&nbsp;
                 <button
                   loading={isLoading}
@@ -238,7 +238,7 @@ function Login() {
             <div style={mulLoginPageStyle}>
               <hr style={{ marginTop: "50px" }} />
               <GoogleLogin />
-              <FbLogin />
+              {/* <FbLogin /> */}
             </div>
           </div>
         </div>

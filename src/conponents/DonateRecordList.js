@@ -6,7 +6,7 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 import ProductStep3 from "../elements/productStep3";
 import Navbar from "../elements/navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -27,7 +27,7 @@ function UploadDemand() {
     <div>
       <Navbar />
       <div style={{ marginBottom: "50px" }}>
-        <TitleSecMember name="捐贈紀錄" />
+        <TitleSec name="認購紀錄" color="#F4D19B"/>
         <Container>
           <div
             style={{

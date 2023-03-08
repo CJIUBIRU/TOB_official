@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Button(props) {
   const stepBtnStyle = {
     color: "#ffffff",
-    backgroundColor: "#002B5B",
+    backgroundColor: props.color,
     borderRadius: "30px",
     lineHeight: "33px",
     fontSize: "16px",

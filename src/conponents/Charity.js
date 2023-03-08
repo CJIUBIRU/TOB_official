@@ -11,7 +11,7 @@ import TagType from "../elements/tagType";
 import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 // import CharityCard from '../elements/charityCard';
 
 import NavbarHome from "../elements/navbarHome";
@@ -120,7 +120,7 @@ function Charity() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecMember name="合作機構一覽表" />
+      <TitleSec name="合作機構一覽表" color="#F4D19B" />
       <Container>
         {/* , display: "flex", flexDirection: "row" */}
         <div style={{ padding: "30px", textSpacing: "1px" }}>

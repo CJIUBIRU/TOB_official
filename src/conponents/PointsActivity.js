@@ -9,14 +9,13 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightLong } from "@fortawesome/free-solid-svg-icons";
 
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 import TitleStep from "../elements/titleStep";
 
 import NavbarHome from "../elements/navbarHome";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
-import TitleStepMember from "../elements/titleStepMember";
 
 function PointsActivity() {
   const [user] = useAuthState(auth);
@@ -73,8 +72,8 @@ function PointsActivity() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecMember name="點數兌換區" />
-      <TitleStepMember name="期間限定活動" />
+      <TitleSec name="點數兌換區" color="#F4D19B"/>
+      <TitleStep color="#F58D59" name="期間限定活動" />
 
       <Card style={cardStyle}>
         {/* <Card.Img variant="top" src="holder.js/100px180" /> */}

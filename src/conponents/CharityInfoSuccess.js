@@ -45,7 +45,7 @@ function CharityInfoSuccess() {
   return (
     <div>
       <NavbarNoFunction />
-      <TitleSec name="基本資料設定" />
+      <TitleSec name="基本資料設定" color="#90AACB" />
       <Container>
       <Stepper
           steps={[

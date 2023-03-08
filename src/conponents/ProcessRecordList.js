@@ -27,7 +27,7 @@ function UploadDemand() {
     <div>
       <Navbar />
       <div style={{ marginBottom: "50px" }}>
-        <TitleSec name="捐贈進度追蹤" />
+        <TitleSec name="認購進度追蹤" color="#F4D19B"/>
         <Container>
           <div
             style={{

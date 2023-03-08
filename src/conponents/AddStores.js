@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../elements/navbar";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
@@ -54,7 +54,7 @@ function UploadGoods() {
   return (
     <div>
       <Navbar />
-      <TitleSecAdmin name="新增合作店家" />
+      <TitleSec name="新增合作店家" color="#7BBFBA" />
       <br />
       <Container>
         <div>

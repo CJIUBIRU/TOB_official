@@ -179,7 +179,7 @@ function AllQrcode() {
   return (
     <div>
       <Navbar />
-      <TitleSec name="我的取件條碼" />
+      <TitleSec name="我的取件條碼" color="#90AACB" />
       {details.map((item) => (
         <Task
           id={item.id}

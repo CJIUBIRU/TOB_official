@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db, storage } from "../utils/firebase";
 import Navbar from "../elements/navbar";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import { Card, FormControl } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
@@ -121,7 +121,7 @@ function UpdateGoods() {
   return (
     <div>
       <Navbar />
-      <TitleSecAdmin name="修改物資資訊" />
+      <TitleSec name="修改物資資訊" color="#7BBFBA"/>
       {/* <TitleStep name="STEP2 - 填寫商品資訊" /> */}
 
       <Container>

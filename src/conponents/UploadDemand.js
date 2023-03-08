@@ -50,7 +50,7 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSec name="刊登物資需求" />
+      <TitleSec name="刊登物資需求" color="#90AACB"/>
       <Container>
         <Stepper
           steps={[
@@ -67,6 +67,7 @@ function UploadDemand() {
             key={index}
             id={item.id}
             name={item.data.name}
+            pic={item.data.pic}
             store={item.data.store}
             cart={cart}
             setCart={setCart}
@@ -80,7 +81,7 @@ function UploadDemand() {
             marginRight: "55%",
           }}
         >
-          <ButtonLink to="/uploadDemandSec" name="下一步" />
+          <ButtonLink color="#002b5b" to="/uploadDemandSec" name="下一步" />
         </div>
       </Container>
     </div>

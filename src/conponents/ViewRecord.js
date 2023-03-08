@@ -2,7 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
 import "../App.css";
 import Product from "../elements/product";
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 import Navbar from "../elements/navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
@@ -23,7 +23,7 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSecMember name="瀏覽紀錄" />
+      <TitleSec name="瀏覽紀錄" color="#F4D19B"/>
       <Container>
         <div style={titleSecPage}>
           <Row>

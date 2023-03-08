@@ -1,15 +1,15 @@
 import { Container } from "react-bootstrap";
 import React from "react";
 import "../App.css";
-import TitleSecMember from "../elements/titleSecMember";
-import TitleStepMember from "../elements/titleStepMember";
+import TitleSec from "../elements/titleSec";
+import TitleStep from "../elements/titleStep";
 import ButtonLink from "../elements/button";
 import ProductStep3 from "../elements/productStep3";
 import Navbar from "../elements/navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
-import ButtonMember from "../elements/buttonMember";
+import Button from "../elements/button";
 
 function UploadDemand() {
   const navigate = useNavigate("");
@@ -36,9 +36,9 @@ function UploadDemand() {
   return (
     <div>
       <Navbar />
-      <TitleSecMember name="捐贈物資列表" />
+      <TitleSec name="捐贈物資列表" color="#F4D19B"/>
       <Container>
-        <TitleStepMember name="STEP3&nbsp;-&nbsp;確認並付款" />
+        <TitleStep color="#F58D59" name="STEP3&nbsp;-&nbsp;確認並付款" />
         <div>
           <ProductStep3 />
         </div>
@@ -90,10 +90,10 @@ function UploadDemand() {
         </p>
         <div style={stepBtnStyle}>
           <div style={returnStepStyle}>
-            <ButtonMember to="/donateListSec" name="返回" />
+            <Button color="#F58D59" to="/donateListSec" name="返回" />
           </div>
           <div style={nextStepStyle}>
-            <ButtonMember to="#" name="下一步" />
+            <Button color="#F58D59" to="#" name="下一步" />
           </div>
         </div>
       </Container>

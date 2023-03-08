@@ -5,8 +5,8 @@ import Navbar from "../elements/navbar";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-import TitleSecMember from "../elements/titleSecMember";
-import TitleStepMember from "../elements/titleStepMember";
+import TitleSec from "../elements/titleSec";
+import TitleStep from "../elements/titleStep";
 import Button from "react-bootstrap/Button";
 
 import { updateDoc, doc } from "firebase/firestore";
@@ -124,7 +124,7 @@ function ApplicationUpload4() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecMember name="公益團體申請資料填寫及上傳" />
+      <TitleSec name="公益團體申請資料填寫及上傳" color="#F4D19B" />
       <Container>
       <Stepper style={{marginBottom: "15px"}}
           steps={[
@@ -137,7 +137,7 @@ function ApplicationUpload4() {
           activeStep={3}
         />
       </Container>
-      <TitleStepMember name="STEP4&nbsp;-&nbsp;上傳公益團體基本資料" />
+      <TitleStep color="#F58D59" name="STEP4&nbsp;-&nbsp;上傳公益團體基本資料" />
       <Card style={cardStyle}>
         <Card.Body>
           <form onSubmit={handleSubmit} name="addTask">

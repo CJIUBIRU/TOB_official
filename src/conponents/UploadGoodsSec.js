@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../utils/firebase";
 import Navbar from "../elements/navbar";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import { Card, FormControl } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
@@ -12,7 +12,7 @@ import {
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
-import TitleStepAdmin from "../elements/titleStepAdmin";
+import TitleStep from "../elements/titleStep";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate, useLocation } from "react-router";
@@ -85,7 +85,7 @@ function UploadGoods() {
   return (
     <div>
       <Navbar />
-      <TitleSecAdmin name="上架物資" />
+      <TitleSec name="上架物資" color="#7BBFBA"/>
       <Container style={{ marginBottom: "15px" }}>
         <Stepper
           steps={[
@@ -97,7 +97,7 @@ function UploadGoods() {
           activeStep={1}
         />
       </Container>
-      <TitleStepAdmin name="STEP2 - 填寫商品資訊" />
+      <TitleStep color="#069A8E" name="STEP2 - 填寫商品資訊" />
       <br />
       <Container>
         <div>

@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import TitleSec from "../elements/titleSec";
 import Col from "react-bootstrap/Col";
@@ -15,8 +15,14 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
 } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { db } from "../utils/firebase";
 
-function UserUpdatePassword() {
+function Task({ id, email, level, name }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
   const auth = getAuth();
   const [user] = useAuthState(auth);
@@ -94,107 +100,316 @@ function UserUpdatePassword() {
   // console.log("password.oldOne", password.oldOne);
   // console.log("password.newOne", password.newOne);
 
-  const profileContentStyle = {
-    borderRadius: "5px",
-    height: "200px",
-    color: "#002b5b",
-    fontSize: "18px",
-    letterSpacing: "1px",
-    lineHeight: "40px",
-    margin: "20px 0 0 5%",
-  };
-  const titleSecPage = {
-    margin: "40px 0px 30px 0px", //上右下左
-  };
-  const settingsSec = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    // autoplay: true,
-  };
-  const passwordStyle = {
-    marginTop: "70px",
-    marginLeft: "45.5%",
-  };
+  return (
+    <div>
+      {user.email === email && level === "member" && (
+        <div>
+          <TitleSec name="修改密碼" color="#F4D19B" />
+          <Container>
+            <Card
+              style={{ marginTop: "60px", width: "60%", marginLeft: "20%" }}
+            >
+              <div
+                style={{
+                  borderRadius: "5px",
+                  height: "200px",
+                  color: "#002b5b",
+                  fontSize: "18px",
+                  letterSpacing: "1px",
+                  lineHeight: "40px",
+                  margin: "20px 0 0 5%",
+                }}
+              >
+                <Col>
+                  <div
+                    style={{
+                      marginTop: "35px",
+                      width: "70%",
+                      marginLeft: "11%",
+                    }}
+                  >
+                    <InputGroup style={{ marginBottom: "10px" }}>
+                      <Form.Label
+                        htmlFor="basic-url"
+                        style={{ lineHeight: "40px", marginRight: "10px" }}
+                      >
+                        輸入舊密碼：&nbsp;
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="oldOne"
+                        style={{
+                          width: "30%",
+                          height: "40px",
+                          borderRadius: "5px",
+                        }}
+                        value={password.oldOne}
+                        onChange={handleChange}
+                        placeholder="請輸入舊密碼"
+                      />
+                    </InputGroup>
+                    <InputGroup>
+                      <Form.Label
+                        htmlFor="basic-url"
+                        style={{ lineHeight: "40px", marginRight: "10px" }}
+                      >
+                        設定新密碼：&nbsp;
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="newOne"
+                        style={{
+                          width: "30%",
+                          height: "40px",
+                          borderRadius: "5px",
+                        }}
+                        value={password.newOne}
+                        onChange={handleChange}
+                        placeholder="請輸入新密碼"
+                      />
+                    </InputGroup>
+                  </div>
+                </Col>
+              </div>
+            </Card>
 
-  const textStyle = {
-    marginTop: "35px",
-    width: "70%",
-    marginLeft: "11%",
-  };
+            <div style={{ marginTop: "70px", marginLeft: "45.5%" }}>
+              <input
+                style={{
+                  color: "#ffffff",
+                  backgroundColor: "#F58D59",
+                  borderRadius: "30px",
+                  borderColor: "#002B5B",
+                  fontSize: "16px",
+                  width: "120px",
+                  textAlign: "center",
+                  height: "35px",
+                  fontWeight: "bold",
+                  border: "none",
+                }}
+                type="submit"
+                value="確認修改"
+                onClick={sendNewPassword}
+              />
+            </div>
+          </Container>
+        </div>
+      )}
+      {user.email === email && level === "admin" && (
+        <div>
+          <TitleSec name="修改密碼" color="#7BBFBA" />
+          <Container>
+            <Card
+              style={{ marginTop: "60px", width: "60%", marginLeft: "20%" }}
+            >
+              <div
+                style={{
+                  borderRadius: "5px",
+                  height: "200px",
+                  color: "#002b5b",
+                  fontSize: "18px",
+                  letterSpacing: "1px",
+                  lineHeight: "40px",
+                  margin: "20px 0 0 5%",
+                }}
+              >
+                <Col>
+                  <div
+                    style={{
+                      marginTop: "35px",
+                      width: "70%",
+                      marginLeft: "11%",
+                    }}
+                  >
+                    <InputGroup style={{ marginBottom: "10px" }}>
+                      <Form.Label
+                        htmlFor="basic-url"
+                        style={{ lineHeight: "40px", marginRight: "10px" }}
+                      >
+                        輸入舊密碼：&nbsp;
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="oldOne"
+                        style={{
+                          width: "30%",
+                          height: "40px",
+                          borderRadius: "5px",
+                        }}
+                        value={password.oldOne}
+                        onChange={handleChange}
+                        placeholder="請輸入舊密碼"
+                      />
+                    </InputGroup>
+                    <InputGroup>
+                      <Form.Label
+                        htmlFor="basic-url"
+                        style={{ lineHeight: "40px", marginRight: "10px" }}
+                      >
+                        設定新密碼：&nbsp;
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="newOne"
+                        style={{
+                          width: "30%",
+                          height: "40px",
+                          borderRadius: "5px",
+                        }}
+                        value={password.newOne}
+                        onChange={handleChange}
+                        placeholder="請輸入新密碼"
+                      />
+                    </InputGroup>
+                  </div>
+                </Col>
+              </div>
+            </Card>
 
-  const nameStyle = {
-    lineHeight: "40px",
-    marginRight: "10px",
-  };
-  const labelStyle = {
-    width: "30%",
-    height: "40px",
-    borderRadius: "5px",
-  };
+            <div style={{ marginTop: "70px", marginLeft: "45.5%" }}>
+              <input
+                style={{
+                  color: "#ffffff",
+                  backgroundColor: "#069A8E",
+                  borderRadius: "30px",
+                  borderColor: "#002B5B",
+                  fontSize: "16px",
+                  width: "120px",
+                  textAlign: "center",
+                  height: "35px",
+                  fontWeight: "bold",
+                  border: "none",
+                }}
+                type="submit"
+                value="確認修改"
+                onClick={sendNewPassword}
+              />
+            </div>
+          </Container>
+        </div>
+      )}
+      {user.email === email && level === "charity" && (
+        <div>
+          <TitleSec name="修改密碼" color="#90AACB" />
+          <Container>
+            <Card
+              style={{ marginTop: "60px", width: "60%", marginLeft: "20%" }}
+            >
+              <div
+                style={{
+                  borderRadius: "5px",
+                  height: "200px",
+                  color: "#002b5b",
+                  fontSize: "18px",
+                  letterSpacing: "1px",
+                  lineHeight: "40px",
+                  margin: "20px 0 0 5%",
+                }}
+              >
+                <Col>
+                  <div
+                    style={{
+                      marginTop: "35px",
+                      width: "70%",
+                      marginLeft: "11%",
+                    }}
+                  >
+                    <InputGroup style={{ marginBottom: "10px" }}>
+                      <Form.Label
+                        htmlFor="basic-url"
+                        style={{ lineHeight: "40px", marginRight: "10px" }}
+                      >
+                        輸入舊密碼：&nbsp;
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="oldOne"
+                        style={{
+                          width: "30%",
+                          height: "40px",
+                          borderRadius: "5px",
+                        }}
+                        value={password.oldOne}
+                        onChange={handleChange}
+                        placeholder="請輸入舊密碼"
+                      />
+                    </InputGroup>
+                    <InputGroup>
+                      <Form.Label
+                        htmlFor="basic-url"
+                        style={{ lineHeight: "40px", marginRight: "10px" }}
+                      >
+                        設定新密碼：&nbsp;
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="newOne"
+                        style={{
+                          width: "30%",
+                          height: "40px",
+                          borderRadius: "5px",
+                        }}
+                        value={password.newOne}
+                        onChange={handleChange}
+                        placeholder="請輸入新密碼"
+                      />
+                    </InputGroup>
+                  </div>
+                </Col>
+              </div>
+            </Card>
 
-  const stepBtnStyle = {
-    color: "#ffffff",
-    backgroundColor: "#002B5B",
-    borderRadius: "30px",
-    borderColor: "#002B5B",
-    fontSize: "16px",
-    width: "120px",
-    textAlign: "center",
-    height: "35px",
-    fontWeight: "bold",
-  };
+            <div style={{ marginTop: "70px", marginLeft: "45.5%" }}>
+              <input
+                style={{
+                  color: "#ffffff",
+                  backgroundColor: "#002B5B",
+                  borderRadius: "30px",
+                  borderColor: "#002B5B",
+                  fontSize: "16px",
+                  width: "120px",
+                  textAlign: "center",
+                  height: "35px",
+                  fontWeight: "bold",
+                  border: "none",
+                }}
+                type="submit"
+                value="確認修改"
+                onClick={sendNewPassword}
+              />
+            </div>
+          </Container>
+        </div>
+      )}
+    </div>
+  );
+}
 
+function UserUpdatePassword() {
+  const [details, setDetails] = useState([]);
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    onSnapshot(q, (querySnapshot) => {
+      setDetails(
+        querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
   return (
     <div>
       <Navbar />
-      <TitleSec name="修改密碼" />
-      <Container>
-        <Card style={{ marginTop: "60px", width: "60%", marginLeft: "20%" }}>
-          <div style={profileContentStyle}>
-            <Col>
-              <div style={textStyle}>
-                <InputGroup style={{ marginBottom: "10px" }}>
-                  <Form.Label htmlFor="basic-url" style={nameStyle}>
-                    輸入舊密碼：&nbsp;
-                  </Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="oldOne"
-                    style={labelStyle}
-                    value={password.oldOne}
-                    onChange={handleChange}
-                    placeholder="請輸入舊密碼"
-                  />
-                </InputGroup>
-                <InputGroup>
-                  <Form.Label htmlFor="basic-url" style={nameStyle}>
-                    設定新密碼：&nbsp;
-                  </Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="newOne"
-                    style={labelStyle}
-                    value={password.newOne}
-                    onChange={handleChange}
-                    placeholder="請輸入新密碼"
-                  />
-                </InputGroup>
-              </div>
-            </Col>
-          </div>
-        </Card>
-
-        <div style={passwordStyle}>
-          <input
-            style={stepBtnStyle}
-            type="submit"
-            value="確認修改"
-            onClick={sendNewPassword}
-          />
-        </div>
-      </Container>
+      {details.map((item) => (
+        <Task
+          id={item.id}
+          key={item.id}
+          level={item.data.level}
+          email={item.data.email}
+          name={item.data.name}
+        />
+      ))}
     </div>
   );
 }

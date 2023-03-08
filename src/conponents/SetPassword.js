@@ -19,8 +19,6 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { Container, Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import ProgressBar from "react-bootstrap/ProgressBar";
 import NavbarNoFunction from "../elements/navbarNoFunction";
 import { Stepper } from "react-form-stepper";
 
@@ -178,7 +176,7 @@ function SetPassword() {
   return (
     <div>
       <NavbarNoFunction />
-      <TitleSec name="基本資料設定" />
+      <TitleSec name="基本資料設定" color="#90AACB"/>
       <Container style={{ marginBottom: "50px" }}>
       <Stepper
           steps={[

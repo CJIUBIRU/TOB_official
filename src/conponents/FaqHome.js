@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "../elements/navbar";
 import NavbarHome from "../elements/navbarHome";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import Accordion from "react-bootstrap/Accordion";
 import { Container } from "react-bootstrap";
 import "../App.css";
+
 
 function Faq() {
   const [user] = useAuthState(auth);
@@ -14,11 +15,11 @@ function Faq() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecAdmin name="常見問題" />
+      <TitleSec name="常見問題" color="#F4D19B" />
       <div style={{ marginBottom: "50px" }}>
         <Container>
           <div style={{width: "80%", marginLeft: "10%"}}>
-            <p style={{color: "#069A8E", fontWeight: "bold", fontSize: "18px"}}>【認識我們】</p>
+            <p style={{color: "#F58D59", fontWeight: "bold", fontSize: "18px"}}>【認識我們】</p>
             <Accordion defaultActiveKey={["0"]} alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
@@ -34,7 +35,7 @@ function Faq() {
               </Accordion.Item>
             </Accordion>
             <br />
-            <p style={{color: "#069A8E", fontWeight: "bold", fontSize: "18px"}}>【合作機構-註冊登入】</p>
+            <p style={{color: "#F58D59", fontWeight: "bold", fontSize: "18px"}}>【合作機構-註冊登入】</p>
             <Accordion alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
@@ -104,7 +105,7 @@ function Faq() {
               </Accordion.Item>
             </Accordion>
             <br />
-            <p style={{color: "#069A8E", fontWeight: "bold", fontSize: "18px"}}>【合作機構-物資領取】</p>
+            <p style={{color: "#F58D59", fontWeight: "bold", fontSize: "18px"}}>【合作機構-物資領取】</p>
             <Accordion alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
@@ -283,7 +284,7 @@ function Faq() {
               </Accordion.Item>
             </Accordion>
             <br />
-            <p style={{color: "#069A8E", fontWeight: "bold", fontSize: "18px"}}>【捐贈者-註冊】</p>
+            <p style={{color: "#F58D59", fontWeight: "bold", fontSize: "18px"}}>【捐贈者-註冊】</p>
             <Accordion alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
@@ -331,7 +332,7 @@ function Faq() {
               </Accordion.Item>
             </Accordion>
             <br />
-            <p style={{color: "#069A8E", fontWeight: "bold", fontSize: "18px"}}>【捐贈者-物資認購】</p>
+            <p style={{color: "#F58D59", fontWeight: "bold", fontSize: "18px"}}>【捐贈者-物資認購】</p>
             <Accordion alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
@@ -411,7 +412,7 @@ function Faq() {
               </Accordion.Item>
             </Accordion>
             <br />
-            <p style={{color: "#069A8E", fontWeight: "bold", fontSize: "18px"}}>【捐贈者-機構】</p>
+            <p style={{color: "#F58D59", fontWeight: "bold", fontSize: "18px"}}>【捐贈者-機構】</p>
             <Accordion alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>

@@ -74,7 +74,7 @@ function ForgetPassword() {
 
   const stepBtnStyle = {
     color: "#ffffff",
-    backgroundColor: "#002B5B",
+    backgroundColor: "#F58D59",
     borderRadius: "30px",
     borderColor: "#002B5B",
     fontSize: "16px",
@@ -83,6 +83,7 @@ function ForgetPassword() {
     height: "35px",
     fontWeight: "bold",
     lineHeight: "30px",
+    border: "none"
   };
 
   const errorMessageStyle = {
@@ -103,7 +104,7 @@ function ForgetPassword() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSec name="忘記密碼" />
+      <TitleSec name="忘記密碼" color="#F4D19B" />
       <Container>
         <Card style={{ marginTop: "80px", width: "60%", marginLeft: "20%" }}>
           <div style={profileContentStyle}>

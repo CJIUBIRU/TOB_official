@@ -7,10 +7,10 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudDownload } from "@fortawesome/free-solid-svg-icons";
 
-import TitleSecMember from "../elements/titleSecMember";
+import TitleSec from "../elements/titleSec";
 
 import Navbar from "../elements/navbar";
-import ButtonMember from "../elements/buttonMember";
+import Button from "../elements/button";
 
 import NavbarHome from "../elements/navbarHome";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -65,7 +65,7 @@ function ApplicationInfo() {
       {user && <Navbar />}
       {!user && <NavbarHome />}
       {/* <h2 style={titleStyle}></h2> */}
-      <TitleSecMember name="公益團體申請資料說明" />
+      <TitleSec name="公益團體申請資料說明" color="#F4D19B" />
 
       {/* <h1>QRcode</h1>
         <input onChange={handleQRCodeChange} placeholder="URL" />
@@ -175,7 +175,7 @@ function ApplicationInfo() {
           </ul>
 
           <div style={btnStyle}>
-            <ButtonMember to="/applicationUpload" name="前往上傳" />
+            <Button to="/applicationUpload" name="前往上傳" color="#F58D59" />
           </div>
         </Card.Body>
       </Card>

@@ -1,6 +1,6 @@
 import React from "react"; 
 import Card from "react-bootstrap/Card";
-import ButtonMember from "./buttonMember";
+import Button from "./button";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 
@@ -83,7 +83,7 @@ function Product() {
             )}
             {user && (
               <div style={goDonateStyle}>
-                <ButtonMember to="/donate" name="加入捐贈箱" />
+                <Button color="#F58D59" to="/donate" name="加入捐贈箱" />
               </div>
             )}
           </Card.Text>

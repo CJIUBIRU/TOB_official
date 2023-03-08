@@ -115,7 +115,7 @@ function CharityLogo() {
     <div style={{ paddingBottom: "80px" }}>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSec name="基本資料設定" />
+      <TitleSec name="基本資料設定" color="#90AACB"/>
       <Stepper
           steps={[
             { label: "設定密碼" },

@@ -14,9 +14,8 @@ import { db } from "../utils/firebase";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { collection, query, onSnapshot } from "firebase/firestore";
-import LogoutAdmin from "./logoutAdmin";
-import LogoutCharity from "./logoutCharity";
-import LogoutMember from "./logoutMember";
+import Logout from "./logout";
+import logo from "../img/logo.png";
 
 function Task({ id, email, level, name }) {
   useEffect(() => {
@@ -53,7 +52,12 @@ function Task({ id, email, level, name }) {
               >
                 <Row style={{ textAlign: "center" }}>
                   {email === user.email && level === "member" && (
-                    <Col>
+                    <Col style={{ display: "flex", flexDirection: "row" }}>
+                      <img
+                        src={logo}
+                        style={{ width: "75px", height: "75px" }}
+                        alt="logoImg"
+                      />
                       <Navbar.Brand
                         as={Link}
                         to="/"
@@ -64,7 +68,7 @@ function Task({ id, email, level, name }) {
                           fontSize: "25px",
                           fontWeight: "bold",
                           lineHeight: "65px",
-                          marginRight: "500px",
+                          marginRight: "400px",
                         }}
                       >
                         捐捐不息&nbsp;Trickle of Benefaction
@@ -99,7 +103,7 @@ function Task({ id, email, level, name }) {
 
                   {email === user.email && level === "member" && (
                     <Col style={{ padding: "0px", paddingLeft: "10px" }}>
-                      <LogoutMember />
+                      <Logout />
                     </Col>
                   )}
                   {email === user.email && level === "member" && (
@@ -176,7 +180,12 @@ function Task({ id, email, level, name }) {
               >
                 <Row style={{ textAlign: "center" }}>
                   {email === user.email && level === "charity" && (
-                    <Col>
+                    <Col style={{ display: "flex", flexDirection: "row" }}>
+                      <img
+                        src={logo}
+                        style={{ width: "75px", height: "75px" }}
+                        alt="logoImg"
+                      />
                       <Navbar.Brand
                         as={Link}
                         to="/"
@@ -187,7 +196,7 @@ function Task({ id, email, level, name }) {
                           fontSize: "25px",
                           fontWeight: "bold",
                           lineHeight: "65px",
-                          marginRight: "150px",
+                          marginRight: "100px",
                         }}
                       >
                         捐捐不息&nbsp;Trickle of Benefaction
@@ -267,7 +276,7 @@ function Task({ id, email, level, name }) {
                         paddingRight: "15px",
                       }}
                     >
-                      <LogoutCharity />
+                      <Logout />
                     </Col>
                   )}
                   {email === user.email && level === "charity" && (
@@ -324,7 +333,12 @@ function Task({ id, email, level, name }) {
               >
                 <Row style={{ textAlign: "center" }}>
                   {email === user.email && level === "admin" && (
-                    <Col>
+                    <Col style={{ display: "flex", flexDirection: "row" }}>
+                      <img
+                        src={logo}
+                        style={{ width: "75px", height: "75px" }}
+                        alt="logoImg"
+                      />
                       <Navbar.Brand
                         as={Link}
                         to="/"
@@ -335,7 +349,7 @@ function Task({ id, email, level, name }) {
                           fontSize: "25px",
                           fontWeight: "bold",
                           lineHeight: "65px",
-                          marginRight: "180px",
+                          marginRight: "100px",
                         }}
                       >
                         捐捐不息&nbsp;Trickle of Benefaction
@@ -412,7 +426,7 @@ function Task({ id, email, level, name }) {
                         color: "#069A8E",
                       }}
                     >
-                      <LogoutAdmin />
+                      <Logout />
                     </Col>
                   )}
                 </Row>

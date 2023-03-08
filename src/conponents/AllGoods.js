@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import TitleSecAdmin from "../elements/titleSecAdmin";
+import TitleSec from "../elements/titleSec";
 import Navbar from "../elements/navbar";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -27,7 +27,7 @@ function GoodsDetail({ id, name, price, store, pic }) {
   };
   const imgStyle = {
     width: "150px",
-    height: "120px",
+    height: "150px",
     margin: "30px",
     borderRadius: "10px",
   };
@@ -149,7 +149,7 @@ function AllGoods() {
   return (
     <div>
       <Navbar />
-      <TitleSecAdmin name="物資一覽表" />
+      <TitleSec name="物資一覽表" color="#7BBFBA" />
       <Container>
         {/* , display: "flex", flexDirection: "row" */}
         <div style={{ padding: "30px", textSpacing: "1px" }}>

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Card from "react-bootstrap/Card";
-import ButtonMember from "../elements/buttonMember";
+import Button from "../elements/button";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
@@ -117,7 +117,7 @@ function RecordList() {
               </div>
               <hr />
               <div style={{ margin: "0 0 0 15%" }}>
-                <ButtonMember name="查看更多" to="/processRecordList" />
+                <Button color="#F58D59" name="查看更多" to="/processRecordList" />
               </div>
             </Card.Text>
           </Card.Body>

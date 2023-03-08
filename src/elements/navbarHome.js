@@ -11,6 +11,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import { Button } from "react-bootstrap";
 import ScrollToTop from "react-scroll-to-top";
+import logo from "../img/logo.png";
 
 function NavbarComp() {
   useEffect(() => {
@@ -105,6 +106,11 @@ function NavbarComp() {
     <div style={bodyStyle}>
       <Navbar className="nav-bar" style={navbarStyle} expand="lg">
         <Container>
+          <img
+            src={logo}
+            style={{ width: "75px", height: "75px" }}
+            alt="logoImg"
+          />
           <Navbar.Brand
             as={Link}
             to="/"
@@ -174,7 +180,7 @@ function NavbarComp() {
                 </Nav.Link> */}
                 <Nav.Link
                   as={Link}
-                  to="/faqMember"
+                  to="/faqHome"
                   href="#home"
                   style={{
                     marginRight: "8px",

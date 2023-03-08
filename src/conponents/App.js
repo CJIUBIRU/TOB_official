@@ -8,8 +8,6 @@ import UploadDemandThird from "./UploadDemandThird";
 import Signin from "./Signin";
 import MyDemand from "./MyDemand";
 import Profile from "./Profile";
-import ProfileMember from "./ProfileMember";
-import ProfileAdmin from "./ProfileAdmin";
 import DonateListSec from "./DonateListSec";
 import DonateListThird from "./DonateListThird";
 import DonateRecord from "./DonateRecord";
@@ -18,7 +16,6 @@ import Process from "./Process";
 import ProcessRecordList from "./ProcessRecordList";
 import ViewRecord from "./ViewRecord";
 import CharityInfo from "./CharityInfo";
-import CharityPreview from "./CharityPreview";
 import SetPassword from "./SetPassword";
 import PasswordSuccess from "./PasswordSuccess";
 import UploadSuccess from "./UploadSuccess";
@@ -42,7 +39,6 @@ import ApplicationUpload3 from "./ApplicationUpload3";
 import ApplicationUpload4 from "./ApplicationUpload4";
 import ForgetPasseord from "./ForgetPassword";
 import UserUpdatePassword from "./UserUpdatePassword";
-import UserUpdatePasswordAdmin from "./UserUpdatePasswordAdmin";
 import AddStores from "./AddStores";
 import UploadGoodsSuccess from "./UploadGoodsSuccess";
 import AllGoods from "./AllGoods";
@@ -50,16 +46,12 @@ import AllStores from "./AllStores";
 import UpdateStores from "./UpdateStores";
 import UpdateGoods from "./UpdateGoods";
 import SetUserName from "./SetUserName";
-import SetUserNameCharity from "./SetUserNameCharity";
-import SetUserNameAdmin from "./SetUserNameAdmin";
 import UpdateMyDemand from "./UpdateMyDemand";
 import QrcodePage from "./QrcodePage";
 import AllQrcode from "./AllQrcode";
 import CharityLogo from "./CharityLogo";
 import Faq from "./Faq";
-import FaqMember from "./FaqMember";
-import FaqAdmin from "./FaqAdmin";
-import TakeGoods from "./takeGoods";
+import FaqHome from "./FaqHome";
 import Gain from "./Gain";
 import Response from "./Response";
 import ExchangeGoods from "./ExchangeGoods";
@@ -82,8 +74,6 @@ function App() {
           <Route path="/uploadDemandThird" element={<UploadDemandThird />} />
           <Route path="/myDemand" element={<MyDemand />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profileMember" element={<ProfileMember />} />
-          <Route path="/profileAdmin" element={<ProfileAdmin />} />
           <Route path="/donateListSec" element={<DonateListSec />} />
           <Route path="/donateListThird" element={<DonateListThird />} />
           <Route path="/process" element={<Process />} />
@@ -101,7 +91,6 @@ function App() {
           <Route path="/setPassword" element={<SetPassword />} />
           <Route path="/passwordSuccess" element={<PasswordSuccess />} />
           <Route path="/charityInfo" element={<CharityInfo />} />
-          <Route path="/charityPreview" element={<CharityPreview />} />
           <Route path="/charityInfoSuccess" element={<CharityInfoSuccess />} />
           <Route path="/charity" element={<Charity />} />
           <Route path="/charityDetail" element={<CharityDetail />} />
@@ -111,7 +100,6 @@ function App() {
           <Route path="/pointsItemSuccess" element={<PointsItemSuccess />} />
           <Route path="/forgetPassword" element={<ForgetPasseord />} />
           <Route path="/userUpdatePassword" element={<UserUpdatePassword />} />
-          <Route path="/userUpdatePasswordAdmin" element={<UserUpdatePasswordAdmin />} />
           <Route path="/addStores" element={<AddStores />} />
           <Route path="/uploadGoodsSuccess" element={<UploadGoodsSuccess />} />
           <Route path="/allGoods" element={<AllGoods />} />
@@ -119,18 +107,14 @@ function App() {
           <Route path="/updateStores" element={<UpdateStores />} />
           <Route path="/updateGoods" element={<UpdateGoods />} />
           <Route path="/setUserName" element={<SetUserName />} />
-          <Route path="/setUserNameCharity" element={<SetUserNameCharity />} />
-          <Route path="/setUserNameAdmin" element={<SetUserNameAdmin />} />
           <Route path="/donateRecord" element={<DonateRecord />} />
           <Route path="/donateRecordList" element={<DonateRecordList />} />
           <Route path="/updateMyDemand" element={<UpdateMyDemand />} />
           <Route path="/qrcodePage" element={<QrcodePage />} />
           <Route path="/allQrcode" element={<AllQrcode />} />
           <Route path="/charityLogo" element={<CharityLogo />} />
-          <Route path="/faqMember" element={<FaqMember />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/faqAdmin" element={<FaqAdmin />} />
-          <Route path="/takeGoods" element={<TakeGoods />} />
+          <Route path="/faqHome" element={<FaqHome />} />
           <Route path="/gain" element={<Gain />} />
           <Route path="/response" element={<Response />} />
           <Route path="/exchangeGoods" element={<ExchangeGoods />} />

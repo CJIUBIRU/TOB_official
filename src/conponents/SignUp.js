@@ -8,14 +8,17 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import app from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import logo from "../img/coffee.png";
+import logo from "../img/logo.png";
 import bgphoto from "../img/bg_chiheisen_green.jpg";
+import PrivacyPolicy from "./PrivacyPolicy";
+import { Nav } from "react-bootstrap";
+import Policy from "./Files/隱私保護政策.pdf"
 
 function Login() {
   const navigate = useNavigate();
@@ -143,11 +146,11 @@ function Login() {
     flexDirection: "row",
   };
   const loginLogoStyle = {
-    width: "650px",
-    height: "600px",
+    width: "700px",
+    height: "700px",
     position: "absolute",
     top: "50%",
-    margin: "-300px 0px 0px 50px",
+    margin: "-350px 0px 0px 40px",
   };
   const loginPageStyle = {
     // width: "50%",
@@ -171,7 +174,7 @@ function Login() {
     fontWeight: "bold",
     color: "red",
     textAlign: "center",
-    marginTop: "85px",
+    marginTop: "65px",
     border: "1px red solid",
     backgroundColor: "#FFECEC",
   };
@@ -233,8 +236,12 @@ function Login() {
                 />
               )}
             </div>
+            <div style={{ display: "flex", flexDirection: "row", marginLeft: "70px" }}>
+              <span style={{ color: "#002b5b" }}>請先閱讀捐捐不息</span>
+              <a href={Policy} target="_blank" rel="noreferrer">隱私保護政策</a>
+            </div>
             <div style={btnContentStyle}>
-              <ButtonLink to="/signIn" name="返回登入" />
+              <ButtonLink color="#002b5b" to="/signIn" name="返回登入" />
               &nbsp;&nbsp;
               <button style={stepBtnStyle} type="submit" onClick={signUp}>
                 註冊

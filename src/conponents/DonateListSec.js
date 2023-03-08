@@ -1,13 +1,13 @@
 import { Container } from "react-bootstrap";
 import "../App.css";
-import TitleSecMember from "../elements/titleSecMember";
-import TitleStepMember from "../elements/titleStepMember";
+import TitleSec from "../elements/titleSec";
+import TitleStep from "../elements/titleStep";
 import ProductStep2 from "../elements/productStep2";
 import Navbar from "../elements/navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
-import ButtonMember from "../elements/buttonMember";
+import Button from "../elements/button";
 
 const DonateList = () => {
   const navigate = useNavigate("");
@@ -34,9 +34,9 @@ const DonateList = () => {
     <div>
       <Navbar />
       <div style={donPageStyle}>
-        <TitleSecMember name="捐贈物資列表" />
+        <TitleSec name="捐贈物資列表" color="#F4D19B"/>
         <Container>
-          <TitleStepMember name="STEP2&nbsp;-&nbsp;填寫資料" />
+          <TitleStep color="#F58D59" name="STEP2&nbsp;-&nbsp;填寫資料" />
           <div>
             <ProductStep2 />
           </div>
@@ -45,10 +45,10 @@ const DonateList = () => {
           </div>
           <div style={stepBtnStyle}>
             <div style={returnStepStyle}>
-              <ButtonMember to="/donate" name="返回" />
+              <Button color="#F58D59" to="/donate" name="返回" />
             </div>
             <div style={nextStepStyle}>
-              <ButtonMember to="/donateListThird" name="下一步" />
+              <Button color="#F58D59" to="/donateListThird" name="下一步" />
             </div>
           </div>
         </Container>

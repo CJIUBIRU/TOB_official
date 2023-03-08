@@ -7,8 +7,8 @@ import Navbar from "../elements/navbar";
 import { useLocation } from "react-router";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import TitleSecMember from "../elements/titleSecMember";
-import TitleStepMember from "../elements/titleStepMember";
+import TitleSec from "../elements/titleSec";
+import TitleStep from "../elements/titleStep";
 
 //檔案上傳
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage";
@@ -134,7 +134,7 @@ function ApplicationUpload3() {
     <div style={{ paddingBottom: "80px" }}>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecMember name="公益團體申請資料上傳" />
+      <TitleSec name="公益團體申請資料上傳" color="#F4D19B" />
       <Container>
       <Stepper style={{marginBottom: "15px"}}
           steps={[
@@ -147,7 +147,7 @@ function ApplicationUpload3() {
           activeStep={2}
         />
       </Container>
-      <TitleStepMember name="STEP3&nbsp;-&nbsp;上傳法人登記書一份" />
+      <TitleStep color="#F58D59" name="STEP3&nbsp;-&nbsp;上傳法人登記書一份" />
       <Card style={cardStyle}>
         <Card.Body>
           <h4 style={h4Style}>三、法人登記書一份</h4>

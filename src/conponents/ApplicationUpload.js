@@ -7,8 +7,8 @@ import Navbar from "../elements/navbar";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { db, storage } from "../utils/firebase";
-import TitleSecMember from "../elements/titleSecMember";
-import TitleStepMember from "../elements/titleStepMember";
+import TitleSec from "../elements/titleSec";
+import TitleStep from "../elements/titleStep";
 
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 
@@ -163,7 +163,7 @@ function ApplicationUpload() {
     <div style={{ paddingBottom: "80px" }}>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSecMember name="公益團體申請資料上傳" />
+      <TitleSec name="公益團體申請資料上傳" color="#F4D19B" />
       <Container>
       <Stepper style={{marginBottom: "15px"}}
           steps={[
@@ -176,7 +176,7 @@ function ApplicationUpload() {
           activeStep={0}
         />
       </Container>
-      <TitleStepMember name="STEP1&nbsp;-&nbsp;上傳勸募許可函一份" />
+      <TitleStep color="#F58D59" name="STEP1&nbsp;-&nbsp;上傳勸募許可函一份" />
       <Card style={cardStyle}>
         <Card.Body>
           <h4 style={h4Style}>

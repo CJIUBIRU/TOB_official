@@ -14,7 +14,7 @@ function Gain() {
     <div>
       {user && <Navbar />}
       {!user && <NavbarHome />}
-      <TitleSec name="愛心回饋" />
+      <TitleSec name="愛心回饋" color="#90AACB"/>
       <Container>
         <div style={{ textAlign: "center" }}>
           <p

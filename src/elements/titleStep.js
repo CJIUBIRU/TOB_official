@@ -11,7 +11,7 @@ function TitleStep(props) {
     width: "25%",
     height: "45px",
     lineHeight: "45px",
-    color: "#002b5b",
+    color: props.color, //#002b5b
     letterSpacing: "1.5px",
   };
   return (
