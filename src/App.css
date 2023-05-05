@@ -1,0 +1,390 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.active>.page-link, .page-link.active {
+  z-index: 3;
+  color: white;
+  background-color: #002B5B;
+  border-color: #002B5B;
+}
+
+.page-link{
+  color: #002B5B
+}
+
+.progress-bar{
+  background-color: #26aa99;
+}
+
+/* .StepButton-d0-0-2-6.active{
+  background-color: blue;
+} */
+
+.accordion-button:not(.collapsed) {
+  color: #002b5b;
+  font-weight: bold;
+}
+.accordion-button {
+  color: #002b5b;
+}
+
+@media (max-width: 768px){
+  .navGrid{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  .rwdLogoImg{
+    width: 0;
+    height: 0;
+  }
+  .rwdLogoText{
+    width: 90%;
+    height: auto;
+  }
+  .togGrid{
+    padding: 20px
+  }
+  .productGrid{
+    margin-bottom: 20px;
+    padding: 30px 40px 30px 40px;
+    color: #002B5B;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .productImgGrid{
+    margin: 0;
+  }
+  .qrListGrid{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .qrIconGrid{
+    font-size: 50px;
+    text-align: center;
+  }
+  .productPageGrid{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  .productPageTopGrid{
+    margin-top: 80px;
+  }
+  .titleStyle{
+    margin-top: 100px
+  }
+  .homeMargin{
+    background-color: #ffffff;
+  }
+  .pageStyle{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr
+  }
+  .charityStyle{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 50px;
+  }
+  .CDcard{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .charityBtn{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .applicationInfoCard{
+    width: 85%;
+    color: black;
+    left: 50%;
+    margin-top: 175px;
+    padding-top: 5%;
+    padding-bottom: 120px;
+    padding-left: 8%;
+    padding-right: 8%;
+    letter-spacing: 1px;
+  }
+  .profileGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .profileDivGrid{
+    margin: 0px 0px 0px 40px;
+  }
+  .setUserName {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .signInGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* margin-top: 100px; */
+  }
+  .titleImg{
+    width: 390px;
+    margin-top: 30px;
+  }
+  .homeBtnStyle {
+    font-weight: bold;
+    background-color: #002B5B;
+    color: white;
+    width: 110px;
+    text-align: left;
+    height: 50px;
+    line-height: 35px;
+    border-radius: 0px 100px 100px 0px;
+    top: 85%;
+    padding-left: 20px;
+    position: absolute;
+    border: none;
+  }
+  .loginLogoStyle {
+    display: none;
+  }
+  .loginCardStyle {
+    background-color: #D7E9F7;
+    width: 350px;
+    height: 430px;
+    position: absolute;
+    top: 35%;
+    left: 60%;
+    margin: -150px 0px 0px -225px;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 30px;
+  }
+}
+
+@media (min-width: 768px){
+  .cardGrid{
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-auto-rows: minmax(200px, auto); */
+  }
+  .cardPageGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  .productGrid{
+    margin-bottom: 20px;
+    padding: 30px 40px 30px 40px;
+    color: #002B5B;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+  .productImgGrid{
+    width: 200px;
+    height: 200px;
+  }
+  .qrListGrid{
+    display: grid;
+    grid-template-columns: 95% 5%;
+  }
+  .qrIconGrid{
+    font-size: 60px;
+    text-align: center;
+  }
+  .productBtnGrid{
+    margin-top: 100px;
+  }
+  .productPageGrid{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-gap: 20px;
+  }
+  .homeMargin{
+    background-color: #ffffff;
+    margin-top: 80px
+  }
+  .titleStyle{
+    margin-top: 145px
+  }
+  .pageStyle{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 45% 10% 45%
+  }
+  .charityStyle{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: 50px;
+  }
+  .CDcard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .charityBtn{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .applicationInfoCard{
+    width: 85%;
+    color: black;
+    left: 50%;
+    margin-top: 150px;
+    padding-top: 5%;
+    padding-bottom: 120px;
+    padding-left: 8%;
+    padding-right: 8%;
+    letter-spacing: 1px;
+  }     
+  .profileGrid {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+  }
+  .profileDivGrid{
+    margin: 0px 0px 0px 80px;
+  }
+  .setUserName {
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+  }
+  .signInGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 50px;
+  }
+  .signInGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* margin-top: 100px; */
+  }
+  .titleImg{
+    width: 390px;
+  }
+  .homeBtnStyle {
+    font-weight: bold;
+    background-color: #002B5B;
+    color: white;
+    width: 110px;
+    text-align: left;
+    height: 50px;
+    line-height: 35px;
+    border-radius: 100px 0px 0px 100px;
+    top: 90%;
+    right: 0%;
+    padding-left: 20px;
+    position: absolute;
+    border: none;
+  }
+  .loginLogoStyle {
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    top: 50%;
+    margin: -350px 0px 0px 40px;
+  }
+  .loginCardStyle {
+    background-color: #D7E9F7;
+    width: 450px;
+    height: 430px;
+    position: absolute;
+    top: 40%;
+    left: 75%;
+    margin: -150px 0px 0px -225px;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 30px;
+  }
+}
+
+/* table RWD */
+@media (max-width: 736px) {
+  .table-rwd {
+  min-width: 100%;
+  }
+  
+  
+  /*針對tr去做隱藏*/
+  tr.tr-only-hide {
+  display: none !important;
+  }
+  
+  /*讓tr變成區塊主要讓他有個區塊*/
+  .table-rwd tr {
+  display: block;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  }
+  
+  .table-rwd td {
+  text-align: left;
+  font-size: 15px;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+  }
+  
+  .table-rwd td:before {
+  /*最重要的就是這串*/
+  content: attr(data-th) " : ";
+  /*最重要的就是這串*/
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #000000;
+  }
+  
+  /*當RWD縮小的時候.table-bordered 會有兩條線，所以針對.table-bordered去做修正*/
+  .table-rwd.table-bordered td,
+  .table-rwd.table-bordered th,
+  .table-rwd.table-bordered {
+  border: 0;
+  }
+  }
+
+  .grid_qrcode{
+    display: grid;
+    grid-template-columns: 25% 65% 10%;
+  }
+  @media (max-width: 736px) {
+  .grid_qrcode {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
+  }
+  .title_qrcode{
+    text-align: center; 
+  }
+  }

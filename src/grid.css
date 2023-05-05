@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+    .wrapper {
+      /* grid-template-columns: 1fr 1fr; */
+      color: "red"
+    }
+}
