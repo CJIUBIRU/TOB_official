@@ -138,7 +138,6 @@ function Login() {
   const loginBodyStyle = {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "red"
   };
   const stepBtnStyle = {
     color: "#ffffff",

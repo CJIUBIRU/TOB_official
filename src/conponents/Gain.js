@@ -64,7 +64,7 @@ function Gain() {
       {user && <Navbar />}
       {!user && <NavbarHome />}
       <TitleSec name="捐捐細流" color="#F4D19B" />
-      <Slider {...settings}>
+      {/* <Slider {...settings}>
         {details.map((item) => (
           <Task
             id={item.id}
@@ -75,7 +75,7 @@ function Gain() {
         ))}
       </Slider>
       <br />
-      <br />
+      <br /> */}
       <GainElement />
     </div>
   );

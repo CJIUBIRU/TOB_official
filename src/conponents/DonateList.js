@@ -14,7 +14,7 @@ import NavbarMember from "../elements/navbarMember";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import NavbarHome from "../elements/navbarHome";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import Step from "@mui/material/Step";
 import Stepper from "@mui/material/Stepper";
@@ -43,7 +43,7 @@ const DonateList = () => {
   const [details, setDetails] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "demand"));
+    const q = query(collection(db, "demand"), where("quantity", ">", 0));
     onSnapshot(q, (querySnapshot) => {
       setDetails(
         querySnapshot.docs.map((doc) => ({
@@ -93,6 +93,7 @@ const DonateList = () => {
               pic={item.data.pic}
               store={item.data.store}
               quantity={item.data.quantity}
+              received={item.data.received}
               charity={item.data.charity}
               description={item.data.description}
               price={item.data.price}
@@ -100,48 +101,6 @@ const DonateList = () => {
               setDonateCart={setDonateCart}
             />
           ))}
-          {/* <div style={selectPageStyle}>
-            <div style={{ width: "50%" }}>
-              <FromSelect />
-            </div>
-            &nbsp;
-            <div style={{ width: "50%" }}>
-              <Search />
-            </div>
-          </div> */}
-          {/* <div style={goodsPageStyle}>
-            <ProductStep1 />
-            <ProductStep1 />
-            <ProductStep1 />
-          </div>
-          <div style={goodsPageStyle}>
-            <ProductStep1 />
-            <ProductStep1 />
-            <ProductStep1 />
-          </div> */}
-          {/* <Row>
-            <Col>
-              <ProductStep1 />
-            </Col>
-            <Col>
-              <ProductStep1 />
-            </Col>
-            <Col>
-              <ProductStep1 />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <ProductStep1 />
-            </Col>
-            <Col>
-              <ProductStep1 />
-            </Col>
-            <Col>
-              <ProductStep1 />
-            </Col>
-          </Row> */}
-          {/* <PaginationList /> */}
           {user && (
             <div
               style={{

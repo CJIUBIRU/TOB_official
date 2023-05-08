@@ -34,11 +34,11 @@ function Task({ id, pic, text }) {
       >
         <div>
           <Card.Body>
-            <img style={{ width: "100%" }} src={pic} alt="charityImg"></img>
+            <img style={{ width: "100%", borderRadius: "10px" }} src={pic} alt="charityImg"></img>
           </Card.Body>
         </div>
         <div>
-          <Card.Text style={{ marginTop: "10px", marginLeft: "20px" }}>
+          <Card.Text style={{ marginTop: "10px", padding: "0px 15px 0px 15px" }}>
             <div>
               <p>{text}</p>
             </div>

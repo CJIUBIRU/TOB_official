@@ -114,6 +114,7 @@ function Login() {
   };
   const backImg = {
     // backgroundImage: `url(${Background})` 
+    // backgroundColor: "#FEF1E6",
   }
   return (
     <div style={backImg}>

@@ -29,15 +29,15 @@ function CharityCardDetail({
   logo,
 }) {
   const cardStyle = {
-    width: "80%",
+    width: "95%",
     color: "black",
     left: "50%",
-    marginTop: "130px",
+    marginTop: "150px",
     transform: `translate(${-50}%, ${-5}%)`,
     paddingTop: "5%",
     paddingBottom: "6%",
-    paddingLeft: "8%",
-    paddingRight: "8%",
+    paddingLeft: "20px",
+    paddingRight: "20px",
     letterSpacing: "1px",
   };
   const h1Style = {

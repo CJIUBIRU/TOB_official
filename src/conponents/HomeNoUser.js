@@ -36,10 +36,12 @@ function NavbarComp() {
     autoplay: true,
   };
   const report1 = {
-    height: "300px",
+    width: "100%",
+    height: "550px",
     textAlign: "center",
     lineHeight: "280px",
     backgroundColor: "#FEF1E6",
+    objectFit: "cover",
   };
   const report2 = {
     height: "300px",
@@ -118,8 +120,7 @@ function NavbarComp() {
   return (
     <div style={{ marginTop: "75px" }}>
       {/* <div><img src={HomePage} alt="HomePage"></img></div> */}
-      <img style={{ width: "100%", marginTop: "35px" }} src={HomePage} alt="bgPhoto" />
-      {/* <div style={bodyStyle}>
+      <div style={bodyStyle}>
         <div style={{ height: "70px" }}></div>
         <div style={{ backgroundColor: "#fef1e6" }}>
           <Slider {...settings}>
@@ -136,6 +137,7 @@ function NavbarComp() {
             ))}
           </Slider>
         </div>
+        <img style={{ width: "100%", marginTop: "35px" }} src={HomePage} alt="bgPhoto" />
 
         <div>
           <Container>
@@ -149,25 +151,25 @@ function NavbarComp() {
               <Slider {...settingsSec}>
                 {charityData.length === 6
                   ? charityData.map((item, index) => (
-                      <div key={index}>
-                        <img
-                          style={report2}
-                          src={item.file?.img?.photo}
-                          alt={item.info?.name}
-                        />
-                      </div>
-                    ))
+                    <div key={index}>
+                      <img
+                        style={report2}
+                        src={item.file?.img?.photo}
+                        alt={item.info?.name}
+                      />
+                    </div>
+                  ))
                   : Array(3)
-                      .fill()
-                      .map((_, index) => (
-                        <div key={index}>
-                          <h4 style={report2}>Loading...</h4>
-                        </div>
-                      ))}
+                    .fill()
+                    .map((_, index) => (
+                      <div key={index}>
+                        <h4 style={report2}>Loading...</h4>
+                      </div>
+                    ))}
               </Slider>
             </div>
           </Container>
-        </div> */}
+        </div>
         <div style={{ backgroundColor: "white" }}>
           <Container>
             <div style={{ padding: "20px 0px 30px 0px" }}>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import img from "../img/tablet.jpg";
 import Card from "react-bootstrap/Card";
 
-function Product({ id, name, pic, store, price, quantity, charity, description, donateCart, setDonateCart}) {
+function Product({ id, name, pic, store, price, quantity, received, charity, description, donateCart, setDonateCart}) {
   const card = {
     marginBottom: "15px",
     marginLeft: "15px",
@@ -26,6 +26,8 @@ function Product({ id, name, pic, store, price, quantity, charity, description, 
     marginLeft: "15%",
     marginRight: "75%",
   };
+
+  const newQuantity = Number(quantity) - Number(received);
 
   const [buttonStyle, setButtonStyle] = useState({
     border: "none",
@@ -52,7 +54,7 @@ function Product({ id, name, pic, store, price, quantity, charity, description, 
         width: "400px",
         margin: "15px",
       });
-      donateCart.push({ id, name, pic, store, price, charity, description, quantity, count: 1, subtotal: price});
+      donateCart.push({ id, name, pic, store, price, charity, description, newQuantity, count: 1, subtotal: price});
       localStorage.setItem("donateCart", JSON.stringify(donateCart));
       let newDonateCart = [...donateCart];
       localStorage.setItem("donateList", JSON.stringify(newDonateCart));
@@ -88,14 +90,14 @@ function Product({ id, name, pic, store, price, quantity, charity, description, 
             <Card.Text style={{ color: "#6C6C6C" }}>
               需求機構：{charity}
               <br />
-              需求物資數量：{quantity}
+              需求物資數量：{newQuantity}
               <br />
               需求說明：{description}
               <br />
               物資提供商家：
               <a style={demandHrefStyle} href="#">{store}</a>
               <br />
-              單價：${price}／台
+              單價：${price}
             </Card.Text>
           </Card.Body>
         </Card>

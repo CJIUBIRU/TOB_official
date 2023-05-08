@@ -106,7 +106,7 @@ const DonateList = () => {
                   pic={item.pic}
                   store={item.store}
                   price={item.price}
-                  quantity={item.quantity}
+                  quantity={item.newQuantity}
                   description={item.description}
                   charity={item.charity}
                   donateList={donateList}
