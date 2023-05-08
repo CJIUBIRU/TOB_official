@@ -58,7 +58,7 @@ function NavbarComp() {
   // 推播分析：瀏覽紀錄
   const [charityData, setCharityData] = useState([]);
   const [charityData2, setCharityData2] = useState([]);
-  // console.log(charityData2);
+  // console.log(charityData);
 
   useEffect(() => {
     let fetchedCharityData = [];
@@ -66,6 +66,7 @@ function NavbarComp() {
     let openData = [];
     let counter = 0;
 
+    // 最新消息
     const q = query(
       collection(db, "clickLog"),
       orderBy("clickCount", "desc"),
@@ -73,15 +74,19 @@ function NavbarComp() {
     );
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.docs.map((doc) => {
+        console.log(doc.data());
         const id = doc.id;
         const docRef = query(collection(db, "charity"), where("uid", "==", id));
         onSnapshot(docRef, (querySnapshot) => {
           querySnapshot.docs.map((doc) => {
             fetchedCharityData.push(doc.data());
+            console.log(fetchedCharityData);
             counter++;
             if (counter === 6) {
               setCharityData(fetchedCharityData);
             }
+            console.log(counter);
+
             return console.log("OK");
           });
         });
@@ -89,6 +94,7 @@ function NavbarComp() {
       });
     });
 
+    // 大推播
     const q2 = query(
       collection(db, "govDonate"),
       orderBy("donateCount", "desc"),
@@ -96,7 +102,7 @@ function NavbarComp() {
     );
     onSnapshot(q2, (querySnapshot) => {
       querySnapshot.docs.map((doc) => openData.push(doc.data()));
-      console.log(openData);
+      // console.log(openData);
       let tag = openData.reduce((acc, cur) => {
         // 將所有類別合併成一個陣列
         const category = cur.category;

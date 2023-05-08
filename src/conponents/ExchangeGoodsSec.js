@@ -15,6 +15,7 @@ import shortUUID from "short-uuid";
 import Step from "@mui/material/Step";
 import Stepper from "@mui/material/Stepper";
 import StepLabel from "@mui/material/StepLabel";
+import NavbarCharity from "../elements/navbarCharity";
 
 const ExchangeGoodsSec = () => {
   const [user] = useAuthState(auth);
@@ -134,9 +135,11 @@ const ExchangeGoodsSec = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarCharity />
       <div style={donPageStyle}>
-        <TitleSec name="兌換物資列表" color="#90AACB" />
+        <div style={{ marginTop: "-80px" }}>
+          <TitleSec name="兌換物資列表" color="#90AACB" />
+        </div>
         <Container>
           <Stepper
             alternativeLabel
@@ -162,14 +165,15 @@ const ExchangeGoodsSec = () => {
                   <Card.Body style={contentStyle}>
                     <div className="grid_exchange">
                       <div>
-                        <Card.Img style={goodsImgStyle} variant="top" src={item.pic} />
+                        <center><Card.Img style={goodsImgStyle} variant="top" src={item.pic} /></center>
                       </div>
                       <div>
 
-
-                        <Card.Title>
-                          <b className="title_exchange">{item.name}</b>
-                        </Card.Title>
+                        <center>
+                          <Card.Title>
+                            <b className="title_exchange">{item.name}</b>
+                          </Card.Title>
+                        </center>
                         <hr></hr>
                         <Card.Text style={{ color: "#6C6C6C" }}>
                           需求機構：<b>{item.charity}</b>
