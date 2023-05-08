@@ -132,8 +132,8 @@ function SetMailData() {
   };
   return (
     <div>
-      {user && <Navbar />}
-      {!user && <NavbarHome />}
+      {/* {user && <Navbar />}
+      {!user && <NavbarHome />} */}
       <TitleSec name="基本資料設定" color="#F4D19B" />
 
       <Container style={{ marginBottom: "50px" }}>

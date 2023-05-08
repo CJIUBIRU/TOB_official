@@ -121,6 +121,7 @@ const ExchangeGoodsSec = () => {
         charityName: tags.charity,
         storeName: tags.store,
         exchangeGoodsData: arrayUnion(...filteredDetails),
+        exchangeDate: null,
       });
       // alert("生成兌換條碼成功。");
       navigate("/exchangeGoodsThird", { state: { QRcodeId: QRcodeId } });

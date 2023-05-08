@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import Card from "react-bootstrap/Card";
 
-
-import Navbar from "../elements/navbarCharity";
+import Navbar from "../elements/navbarNoFunction";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TitleSec from "../elements/titleSec";
@@ -17,10 +16,11 @@ import { auth } from "../utils/firebase";
 import { useNavigate, Link } from "react-router-dom";
 import Accordion from 'react-bootstrap/Accordion';
 import { faGift, faList } from "@fortawesome/free-solid-svg-icons";
-import { doc, updateDoc, Timestamp } from "firebase/firestore";
+import { doc, updateDoc, getDocs, getDoc, Timestamp } from "firebase/firestore";
 import Button from "../elements/button";
 import Qrcode_pic from "../elements/qrcode_pic";
 
+import { useLocation } from 'react-router-dom';
 
 function OrgData({
   QRcodeId,
@@ -34,11 +34,27 @@ function OrgData({
   status,
   exchangeDate,
 }) {
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const value = searchParams.get("value");
+
   const [tmp, setTmp] = useState([]);
-
-
   useEffect(() => {
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", QRcodeId));
+  
+    if(value){
+      const qWithValue = query(collection(db, "QRcode"), where("QRcodeId", "==", value));
+      onSnapshot(qWithValue, (querySnapshot) => {
+        setTmp(
+          querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+        );
+      });
+    }
+    
     onSnapshot(q, (querySnapshot) => {
       setTmp(
         querySnapshot.docs.map((doc) => ({
@@ -47,44 +63,61 @@ function OrgData({
         }))
       );
     });
-  }, []);
+  }, [QRcodeId, value]);
 
   const navigate = useNavigate("");
-  const [passID, setPassID] = useState("");
-  //修改資料的地方（不要刪掉！！！）
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [demandData, setDemandData] = useState([]);
 
-    console.log("uid：" + QRcodeId);
-    console.log("passID：" + passID);
+  //修改資料的地方
+  const handleSubmit = async () => {
+    
+    if(value){  
+      const qrcodeRef = doc(db, "QRcode", value);
+      const qrcodeData = await getDoc(qrcodeRef);
 
-
-    if (passID.trim() === QRcodeId.trim()) {
-      const pID = QRcodeId.trim();
-      //console.log("pID："+pID);
-      const taskDocRef = doc(db, "QRcode", pID);
-
-      // console.log(taskDocRef._key.id);
-      console.log(taskDocRef);
-
-      try {
-        console.log("start");
-        await updateDoc(taskDocRef, {
-          status: "已領取",
-          exchangeDate: Timestamp.now(),
+      if (qrcodeData.exists()) {
+        const exchangeGoodsData = qrcodeData.data().exchangeGoodsData;
+        await updateDoc(qrcodeRef, {
+          "status": "已領取",
+          "exchangeDate": Timestamp.now()
         });
         alert("兌換成功");
-        navigate("/storeQrcode");
-
-      } catch (err) {
-        console.log(err);
-        //alert("驗證碼不正確，兌換失敗。")
+        navigate("/allQrcode");
+  
+        //扣掉demand的數量
+        const demandDocs = await Promise.all(
+          exchangeGoodsData.map((exchangeGood) =>
+            getDocs(query(collection(db, "demand"), where("id", "==", exchangeGood.docId)))
+          )
+        );
+        const batch = [];
+        demandDocs.forEach((docs, index) => {
+          const demandDoc = docs.docs[0];
+          const updateDemandObj = {
+            availability: demandDoc.data().availability - exchangeGoodsData[index].goodsNum,
+            received: demandDoc.data().received + exchangeGoodsData[index].goodsNum,
+          };
+          batch.push(updateDoc(doc(db, "demand", demandDoc.id), updateDemandObj));
+        });
+        await Promise.all(batch);
       }
-    } else {
-      alert("兌換失敗，驗證碼不正確。");
+    }
+    else{
+      navigate("/allQrcode"); 
     }
   };
-
+  const nextStepStyle = {
+    marginLeft: "10px",
+    color: "#ffffff",
+    backgroundColor: "#002B5B",
+    borderRadius: "30px",
+    border: "none",
+    fontSize: "16px",
+    width: "125px",
+    textAlign: "center",
+    height: "35px",
+    fontWeight: "bold",
+  };
   const btnStyle = {
     position: "absolute",
     marginTop: "60px",
@@ -101,11 +134,10 @@ function OrgData({
     fontWeight: "bold",
     lineHeight: "100px",
   };
-
   const contentStyle = {
     textAlign: "left",
-    marginLeft: "10px",
-    letterSpacing: "1px",
+    marginLeft: "30px",
+    letterSpacing: "2px",
   };
   const goodsImgStyle = {
     width: "100px",
@@ -113,17 +145,17 @@ function OrgData({
   };
   const card = {
     marginBottom: "20px",
-    marginLeft: "3%",
-    padding: "10px 20px 10px 20px",
+    marginLeft: "5%",
+    padding: "30px 40px 30px 40px",
     color: "#002B5B",
     width: "90%",
     display: "flex",
-    //flexDirection: "row",
+    flexDirection: "row",
   };
   const card_2 = {
     marginBottom: "20px",
     marginLeft: "15%",
-    padding: "5%",
+    padding: "30px 40px 30px 40px",
     color: "#002B5B",
     width: "70%",
     display: "flex",
@@ -135,7 +167,6 @@ function OrgData({
     fontWeight: "600",
     letterSpacing: "2px"
   }
-
   const prove = {
     backgroundColor: "#26aa99",
     display: "inline-block",
@@ -158,9 +189,8 @@ function OrgData({
 
   return (
     <Card.Body>
-
-
-
+      {/* <h3>value={value}</h3>
+      <h3>QRcodeId={QRcodeId}</h3> */}
 
       <h4 style={h4Style}>一、兌換條碼：</h4>
 
@@ -176,7 +206,7 @@ function OrgData({
 
               <Card.Body style={contentStyle}>
                 <Card.Title>
-                  <b>{item.charityName}</b>
+                  機構名稱：<b>{item.charityName}</b>
                 </Card.Title>
 
                 <hr></hr>
@@ -204,27 +234,22 @@ function OrgData({
 
               {item.exchangeGoodsData.map((item2, index2) => (
                 <Card style={card} key={index2}>
-                  <center>
-                    <Card.Img
-                      style={goodsImgStyle}
-                      variant="top"
-                      src={item2.goodsPicture}
-                    />
-                  </center>
+
+                  <Card.Img
+                    style={goodsImgStyle}
+                    variant="top"
+                    src={item2.goodsPicture}
+                  />
 
                   <Card.Body style={contentStyle}>
-                    <center>
-                      <Card.Title>
-                        商品名稱：<b>{item2.goodsName}</b>
-                      </Card.Title>
-                    </center>
+                    <Card.Title>
+                      商品名稱：<b>{item2.goodsName}</b>
+                    </Card.Title>
                     <hr></hr>
-                    <center>
-                      <Card.Text style={{ color: "#6C6C6C" }}>
-                        兌換數量：{item2.goodsNum}
-                        <br />
-                      </Card.Text>
-                    </center>
+                    <Card.Text style={{ color: "#6C6C6C" }}>
+                      兌換數量：{item2.goodsNum}
+                      <br />
+                    </Card.Text>
                   </Card.Body>
 
                 </Card>
@@ -236,7 +261,7 @@ function OrgData({
       ))}
 
       <div style={btnStyle}>
-        <Button color="#002B5B" to="/allQrcode" name="返回" />
+        <button style={nextStepStyle} color="#002B5B" onClick={handleSubmit}>返回</button>
       </div>
 
     </Card.Body>
@@ -256,6 +281,7 @@ function AllQrcodeData() {
   useEffect(() => {
 
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", org.QRcodeId));
+    
     onSnapshot(q, (querySnapshot) => {
       setTmp(
         querySnapshot.docs.map((doc) => ({
@@ -271,9 +297,8 @@ function AllQrcodeData() {
     width: "90%",
     color: "black",
     left: "50%",
-    marginTop: "100px",
+    marginTop: "80px",
     transform: `translate(${-50}%, ${-5}%)`,
-    paddingTop: "1.5%",
     paddingBottom: "100px",
     paddingLeft: "8%",
     paddingRight: "8%",
@@ -282,10 +307,10 @@ function AllQrcodeData() {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar />
       <div style={{marginTop: "-80px"}}>
         <TitleSec name="我的兌換條碼明細" color="#90aacb" />
-      </div>
+      </div> */}
       <Card style={cardStyle}>
         {tmp.map((item, index) => (
           <OrgData

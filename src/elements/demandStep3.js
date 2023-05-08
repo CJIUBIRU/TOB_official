@@ -5,13 +5,13 @@ import Card from "react-bootstrap/Card";
 function DemandStep3({ id, name, store, count, demandInfo, user, pic }) {
   const card = {
     marginBottom: "20px",
-    marginLeft: "15%",
-    marginRight: "15%",
-    padding: "40px 40px 40px 40px",
+    marginLeft: "10%",
+    marginRight: "10%",
+    padding: "5px",
     color: "#002B5B",
-    width: "70%",
-    display: "flex",
-    flexDirection: "row",
+    width: "80%",
+    // display: "flex",
+    // flexDirection: "row",
   };
   const contentStyle = {
     textAlign: "left",
@@ -22,35 +22,44 @@ function DemandStep3({ id, name, store, count, demandInfo, user, pic }) {
     color: "#90AACB",
   };
   const goodsImgStyle = {
-    width: "200px",
-    height: "200px",
+    marginTop: "40px",
+    width: "150px",
+    height: "150px",
   };
   return (
     <div>
       <Card style={card}>
-        <Card.Img
-          style={goodsImgStyle}
-          variant="top"
-          src={pic}
-        />
-        <Card.Body style={contentStyle}>
-          <Card.Title>
-            物資名稱：<b>{name}</b>
-          </Card.Title>
-          <hr></hr>
-          <Card.Text style={{ color: "#6C6C6C" }}>
-            需求機構：{user}
-            <br />
-            需求數量：{count}
-            <br />
-            需求說明：{demandInfo}
-            <br />
-            物資提供商家：
-            <a style={demandHrefStyle} href="#">
-              {store}
-            </a>
-          </Card.Text>
-        </Card.Body>
+        <div className="grid_demand">
+          <div>
+            <center>
+              <Card.Img
+                style={goodsImgStyle}
+                variant="top"
+                src={pic}
+              />
+            </center>
+          </div>
+          <div>
+            <Card.Body style={contentStyle}>
+              <Card.Title>
+                物資名稱：<b>{name}</b>
+              </Card.Title>
+              <hr></hr>
+              <Card.Text style={{ color: "#6C6C6C" }}>
+                需求機構：{user}
+                <br />
+                需求數量：{count}
+                <br />
+                需求說明：{demandInfo}
+                <br />
+                物資提供商家：
+                <a style={demandHrefStyle} href="#">
+                  {store}
+                </a>
+              </Card.Text>
+            </Card.Body>
+          </div>
+        </div>
       </Card>
     </div>
   );

@@ -12,10 +12,13 @@ import { Link } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Stepper } from "react-form-stepper";
+import Step from "@mui/material/Step";
+import Stepper from "@mui/material/Stepper";
+import StepLabel from "@mui/material/StepLabel";
+import NavbarCharity from "../elements/navbarCharity";
 
 function UploadDemand() {
-  const navigate = useNavigate(""); 
+  const navigate = useNavigate("");
   const [user] = useAuthState(auth);
   if (!user) {
     navigate("/signIn");
@@ -77,19 +80,28 @@ function UploadDemand() {
 
   return (
     <div>
-      <Navbar />
-      <TitleSec name="刊登物資需求" color="#90AACB"/>
+      <NavbarCharity />
+      <div style={{ marginTop: "-80px" }}>
+        <TitleSec name="刊登物資需求" color="#90AACB" />
+      </div>
       <Container>
-      <Stepper
-          steps={[
-            { label: "選鑿需求物資" },
-            { label: "填寫資料" },
-            { label: "確認送出" },
-            // { label: "完成" },
-          ]}
+        <Stepper
+          alternativeLabel
           activeStep={1}
-        />
+          style={{ margin: "30px 0px 30px 0px" }}
+        >
+          <Step key={2}>
+            <StepLabel>選擇需求物資</StepLabel>
+          </Step>
+          <Step key={3}>
+            <StepLabel>填寫資料</StepLabel>
+          </Step>
+          <Step key={4}>
+            <StepLabel>確認送出</StepLabel>
+          </Step>
+        </Stepper>
         <TitleStep name="STEP2&nbsp;-&nbsp;填寫資料" />
+        <br></br>
         {list ? (
           list.map((item, index) => (
             <>

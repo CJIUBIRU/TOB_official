@@ -387,4 +387,20 @@
   .title_qrcode{
     text-align: center; 
   }
+  }/* 新增需求demandStep1~3 */
+.grid_demand {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+@media (max-width: 736px) {
+  .grid_demand {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto ;
   }
+
+  .title_demand {
+    text-align: center;
+  }
+}

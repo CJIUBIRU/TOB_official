@@ -143,7 +143,7 @@ function UploadDemand() {
       ReturnURL:
         "https://us-central1-donation-platform-54f2b.cloudfunctions.net/returnResult",
       ChoosePayment: "ALL",
-      ClientBackURL: "http://localhost:3000/donateList",
+      ClientBackURL: "https://donation-platform-54f2b.web.app/donateList",
       ItemName: itemName,
     };
     try {

@@ -10,14 +10,18 @@ import QRCode from "qrcode.react";
 
 
 function Qrcode_pic(props) {
+    //const url = "https://donation-platform-54f2b.web.app/allQrcodeData";
+    const url = "http://localhost:3000/allQrcodeData";
+    const value = props.QRcodeId;
 
     return (
         <div>
             <p>兌換條碼：{props.QRcodeId}</p>
             <QRCode
                 style={{ width: "200px", height: "200px" }}
-                value={`https://donation-platform-54f2b.web.app/allQrcodeData?id=${props.QRcodeId}`}
+                value={`${url}?value=${value}`}
             />
+
             <div style={{ color: "#e74a3b", paddingTop: "10px", fontWeight: "bold" }}>
                 ※注意：請至合作店家櫃台，出示此QRCode，即可領取物資。
             </div>

@@ -14,10 +14,12 @@ import TitleSec from "../elements/titleSec";
 import Navbar from "../elements/navbar";
 import Modal from "react-bootstrap/Modal";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-
 import Qrcode_pic from "../elements/qrcode_pic";
+import QrCodeList from "../elements/qrCodeList";
+
 function Task({
   QRcodeDate,
+  exchangeDate,
   QRcodeId,
   charityName,
   exchangeGoodsData,
@@ -30,7 +32,7 @@ function Task({
     localStorage.setItem("orgData", JSON.stringify(item));
   };
   const [user] = useAuthState(auth);
-  console.log(exchangeGoodsData);
+  //console.log(exchangeGoodsData);
 
   const contentStyle = {
     textAlign: "left",
@@ -71,7 +73,6 @@ function Task({
     // marginTop: "100px"
   };
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -102,7 +103,6 @@ function Task({
                       <p><b
                         style={{
                           fontSize: "18px",
-                          
                         }}
                       >
                         查看兌換條碼
@@ -185,12 +185,14 @@ function AllQrcode() {
       );
     });
   }, []);
-  console.log(qrcodeDetails);
+
+  // console.log(qrcodeDetails);
   const [user] = useAuthState(auth);
   const navigate = useNavigate("");
   if (!user) {
     navigate("/signIn");
   }
+
   return (
     <div>
       {qrcodeDetails.map((item) => (
@@ -198,6 +200,7 @@ function AllQrcode() {
           QRcodeDate={item.QRcodeDate}
           QRcodeId={item.QRcodeId}
           charityName={item.charityName}
+          exchangeDate={item.exchangeDate}
           exchangeGoodsData={item.exchangeGoodsData}
           status={item.status}
           storeName={item.storeName}

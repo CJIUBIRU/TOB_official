@@ -52,7 +52,7 @@ function UploadDemand() {
   return (
     <div>
       <NavbarCharity />
-      <div style={{marginTop: "-80px"}}>
+      <div style={{ marginTop: "-80px" }}>
         <TitleSec name="刊登物資需求" color="#90AACB" />
       </div>
       <Container>
@@ -72,27 +72,29 @@ function UploadDemand() {
           </Step>
         </Stepper>
         <TitleStep name="STEP1&nbsp;-&nbsp;選擇需求物資" />
-        {details.map((item, index) => (
-          <DemandStep1
-            key={index}
-            id={item.id}
-            name={item.data.name}
-            pic={item.data.pic}
-            price={item.data.price}
-            store={item.data.store}
-            cart={cart}
-            setCart={setCart}
-          />
-        ))}
+         <center>{details.map((item, index) => (
+         
+            <DemandStep1
+              key={index}
+              id={item.id}
+              name={item.data.name}
+              pic={item.data.pic}
+              price={item.data.price}
+              store={item.data.store}
+              cart={cart}
+              setCart={setCart}
+            />
+         
+        ))} </center>
         <div
           style={{
             marginTop: "40px",
             marginBottom: "50px",
-            marginLeft: "45%",
-            marginRight: "55%",
+            // marginLeft: "45%",
+            // marginRight: "55%",
           }}
         >
-          <ButtonLink color="#002b5b" to="/uploadDemandSec" name="下一步" />
+          <center><ButtonLink color="#002b5b" to="/uploadDemandSec" name="下一步" /></center>
         </div>
       </Container>
     </div>

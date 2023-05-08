@@ -29,6 +29,8 @@ function ManagerProveMail() {
     toEmail: org.mail, //密碼：tobofficial
     result: "",
     reason: "",
+    sentence: "", // 請點選請此連結以設定帳號密碼：
+    link: ""
   });
 
   const handleChange = (e) => {
@@ -40,21 +42,27 @@ function ManagerProveMail() {
 
   function sendEmail(e) {
     e.preventDefault();
-    if (
-      values.result === "" ||
-      (values.result === "" && values.reason !== "")
-    ) {
+    if (values.result === "" || (values.result === "" && values.reason !== "")) {
       alert("請選擇審核狀態");
     } else if (values.result === "審核不通過" && values.reason === "") {
       alert("請填寫審核失敗原因");
     } else if (values.result === "審核通過" && values.reason !== "") {
       alert("不必填寫審核失敗原因");
     } else {
+      let newValues = values; // 先複製一份原本的 values 物件
+      if (values.result === "審核通過") {
+        // 修改 sentence 與 link
+        newValues = {
+          ...values,
+          sentence: "請點選以下連結設定帳號密碼：",
+          link: "https://donation-platform-54f2b.web.app/setMailData"
+        };
+      }
       emailjs
         .send(
           "service_5uyv6mh",
           "template_mc4ck0k",
-          values,
+          newValues,
           "vjHGM4GthM0EkFWQC"
         )
         .then(
@@ -107,9 +115,9 @@ function ManagerProveMail() {
     marginTop: "50px",
     // transform: `translate(${-50}%, ${-10}%)`,
     padding: "3% 5% 5% 5%",
-    
+
     letterSpacing: "1px",
-    
+
   };
 
   const btnStyle = {
@@ -145,10 +153,12 @@ function ManagerProveMail() {
   return (
     <div style={{ textAlign: "center" }}>
       <Navbar />
-      <TitleSec name="公益單位申請-審核信件發送" color="#7BBFBA" />
+      <div style={{marginTop: "-80px"}}>
+        <TitleSec name="公益單位申請-審核信件發送" color="#7BBFBA" />
+      </div>
 
 
-      <Container>
+      <Container style={{marginBottom: "100px"}}>
         <div style={{ textAlign: "center" }}>
           <Row>
             <Col>
