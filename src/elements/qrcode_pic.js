@@ -10,8 +10,10 @@ import QRCode from "qrcode.react";
 
 
 function Qrcode_pic(props) {
-    //const url = "https://donation-platform-54f2b.web.app/allQrcodeData";
-    const url = "http://localhost:3000/allQrcodeData";
+    const url = "https://donation-platform-54f2b.web.app/allQrcodeData";
+    //本地端
+    //const url = "http://localhost:3000/allQrcodeData";
+    //上架
     const value = props.QRcodeId;
 
     return (

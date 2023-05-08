@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import Card from "react-bootstrap/Card";
 
-import Navbar from "../elements/navbarNoFunction";
+import Navbar from "../elements/navbarCharity";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TitleSec from "../elements/titleSec";
@@ -42,8 +42,8 @@ function OrgData({
   const [tmp, setTmp] = useState([]);
   useEffect(() => {
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", QRcodeId));
-  
-    if(value){
+
+    if (value) {
       const qWithValue = query(collection(db, "QRcode"), where("QRcodeId", "==", value));
       onSnapshot(qWithValue, (querySnapshot) => {
         setTmp(
@@ -54,7 +54,7 @@ function OrgData({
         );
       });
     }
-    
+
     onSnapshot(q, (querySnapshot) => {
       setTmp(
         querySnapshot.docs.map((doc) => ({
@@ -70,40 +70,46 @@ function OrgData({
 
   //修改資料的地方
   const handleSubmit = async () => {
-    
-    if(value){  
+
+    if (value) {
       const qrcodeRef = doc(db, "QRcode", value);
       const qrcodeData = await getDoc(qrcodeRef);
 
       if (qrcodeData.exists()) {
         const exchangeGoodsData = qrcodeData.data().exchangeGoodsData;
-        await updateDoc(qrcodeRef, {
-          "status": "已領取",
-          "exchangeDate": Timestamp.now()
-        });
-        alert("兌換成功");
-        navigate("/allQrcode");
-  
-        //扣掉demand的數量
-        const demandDocs = await Promise.all(
-          exchangeGoodsData.map((exchangeGood) =>
-            getDocs(query(collection(db, "demand"), where("id", "==", exchangeGood.docId)))
-          )
-        );
-        const batch = [];
-        demandDocs.forEach((docs, index) => {
-          const demandDoc = docs.docs[0];
-          const updateDemandObj = {
-            availability: demandDoc.data().availability - exchangeGoodsData[index].goodsNum,
-            received: demandDoc.data().received + exchangeGoodsData[index].goodsNum,
-          };
-          batch.push(updateDoc(doc(db, "demand", demandDoc.id), updateDemandObj));
-        });
-        await Promise.all(batch);
+        if (qrcodeData.data().status === "未領取") {
+          await updateDoc(qrcodeRef, {
+            "status": "已領取",
+            "exchangeDate": Timestamp.now()
+          });
+          alert("兌換成功");
+          navigate("/allQrcode");
+
+          //扣掉demand的數量
+          const demandDocs = await Promise.all(
+            exchangeGoodsData.map((exchangeGood) =>
+              getDocs(query(collection(db, "demand"), where("id", "==", exchangeGood.docId)))
+            )
+          );
+          const batch = [];
+          demandDocs.forEach((docs, index) => {
+            const demandDoc = docs.docs[0];
+            const updateDemandObj = {
+              availability: demandDoc.data().availability - exchangeGoodsData[index].goodsNum,
+              received: demandDoc.data().received + exchangeGoodsData[index].goodsNum,
+            };
+            batch.push(updateDoc(doc(db, "demand", demandDoc.id), updateDemandObj));
+          });
+          await Promise.all(batch);
+        }
+        else{
+          alert("您已兌換過物資，此QR碼已失效。");
+        }
       }
     }
-    else{
-      navigate("/allQrcode"); 
+    else {
+      
+      navigate("/allQrcode");
     }
   };
   const nextStepStyle = {
@@ -281,7 +287,7 @@ function AllQrcodeData() {
   useEffect(() => {
 
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", org.QRcodeId));
-    
+
     onSnapshot(q, (querySnapshot) => {
       setTmp(
         querySnapshot.docs.map((doc) => ({
@@ -297,8 +303,9 @@ function AllQrcodeData() {
     width: "90%",
     color: "black",
     left: "50%",
-    marginTop: "80px",
+    marginTop: "100px",
     transform: `translate(${-50}%, ${-5}%)`,
+    paddingTop: "1.5%",
     paddingBottom: "100px",
     paddingLeft: "8%",
     paddingRight: "8%",
@@ -307,8 +314,8 @@ function AllQrcodeData() {
 
   return (
     <div>
-      {/* <Navbar />
-      <div style={{marginTop: "-80px"}}>
+      {/* <Navbar /> */}
+      {/* <div style={{ marginTop: "-80px" }}>
         <TitleSec name="我的兌換條碼明細" color="#90aacb" />
       </div> */}
       <Card style={cardStyle}>
