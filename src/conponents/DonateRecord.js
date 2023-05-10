@@ -21,17 +21,7 @@ function UploadDemand() {
       <TitleSec name="認購紀錄" color="#F4D19B"/>
       <Container>
         <div>
-          <Row>
-            <Col>
-              <Record />
-            </Col>
-            <Col>
-              <Record />
-            </Col>
-            <Col>
-              <Record />
-            </Col>
-          </Row>
+          <Record></Record>
         </div>
       </Container>
     </div>

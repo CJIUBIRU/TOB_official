@@ -30,10 +30,12 @@ import AllGoodsList from "../elements/allGoodsList";
 function Task({ id, email, level }) {
   const [user] = useAuthState(auth);
   const report1 = {
-    height: "300px",
+    width: "100%",
+    height: "550px",
     textAlign: "center",
     lineHeight: "280px",
     backgroundColor: "#FEF1E6",
+    objectFit: "cover",
   };
   const report2 = {
     height: "300px",
