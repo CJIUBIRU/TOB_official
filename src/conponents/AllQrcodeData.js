@@ -44,6 +44,7 @@ function OrgData({
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", QRcodeId));
 
     if (value) {
+      console.log("value is exist");
       const qWithValue = query(collection(db, "QRcode"), where("QRcodeId", "==", value));
       onSnapshot(qWithValue, (querySnapshot) => {
         setTmp(
@@ -53,6 +54,9 @@ function OrgData({
           }))
         );
       });
+    }
+    else{
+      console.log("value isn't exist");
     }
 
     onSnapshot(q, (querySnapshot) => {
@@ -70,7 +74,6 @@ function OrgData({
 
   //修改資料的地方
   const handleSubmit = async () => {
-
     if (value) {
       const qrcodeRef = doc(db, "QRcode", value);
       const qrcodeData = await getDoc(qrcodeRef);
@@ -104,6 +107,7 @@ function OrgData({
         }
         else{
           alert("您已兌換過物資，此QR碼已失效。");
+          navigate("/allQrcode");
         }
       }
     }
@@ -282,7 +286,7 @@ function AllQrcodeData() {
   }
   const [tmp, setTmp] = useState([]);
   let org = JSON.parse(localStorage.getItem("orgData"));
-  console.log(org.QRcodeId)
+  //console.log(org.QRcodeId)
 
   useEffect(() => {
 

@@ -102,7 +102,7 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList, pic, pr
 
   // 抓charity DB data
   const [charityData, setCharityData] = useState();
-  const [charityName2, setCharityName2] = useState();
+  // console.log(charityData);
   useEffect(() => {
     let userEmail = JSON.parse(localStorage.getItem("email"));
     const q = query(
@@ -112,21 +112,21 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList, pic, pr
     onSnapshot(q, (querySnapshot) => {
       setCharityData(
         querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
+          name: doc.data().info.name,
+          category: doc.data().info.details.category
         }))
       );
     });
   }, []);
 
   // 更新 chairyName
-  useEffect(() => {
-    if (charityData) {
-      setCharityName2(charityData[0].data.info.name);
-    } else {
-      setCharityName2("");
-    }
-  }, [charityData]);
+  // useEffect(() => {
+  //   if (charityData) {
+  //     setCharityName2(charityData[0].data.info.name);
+  //   } else {
+  //     setCharityName2("");
+  //   }
+  // }, [charityData]);
 
   function handleData(value, demandInfoValue) {
     if (value > 0 && demandInfoValue !== "") {
@@ -143,7 +143,8 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList, pic, pr
           price,
           count: value,
           demandInfo: demandInfoValue,
-          charityName: charityName2,
+          charityName: charityData[0].name,
+          charityCategory: charityData[0].category
         });
         setDemandList(newDemandList);
         localStorage.setItem("demandList", JSON.stringify(newDemandList));
@@ -157,7 +158,8 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList, pic, pr
           price,
           count: value,
           demandInfo: demandInfoValue,
-          charityName: charityName2,
+          charityName: charityData[0].name,
+          charityCategory: charityData[0].category
         });
         localStorage.setItem("demandList", JSON.stringify(demandList));
       }
@@ -186,7 +188,7 @@ function DemandStep2({ id, name, store, user, demandList, setDemandList, pic, pr
               </Card.Title>
               <hr></hr>
               <Card.Text style={{ color: "#6C6C6C" }}>
-                需求機構：<b>{charityData ? charityData[0].data.info.name : ""}</b>
+                需求機構：<b>{charityData ? charityData[0].name : ""}</b>
                 <br />
                 <br />
                 <div

@@ -39,6 +39,8 @@ function UploadGoods() {
   const [name, setName] = useState("");
   const [store, setStore] = useState("");
   const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+
   // const [user] = useAuthState(auth);
 
   const taskDocRef = doc(db, "supply", fromID);
@@ -53,6 +55,7 @@ function UploadGoods() {
         store: store,
         price: price,
         pic: fromURL,
+        category: category
       });
       //console.log('end');
       navigate("/uploadGoodsSuccess");
@@ -88,8 +91,8 @@ function UploadGoods() {
   return (
     <div>
       <Navbar />
-      <div style={{marginTop: "-80px"}}>
-      <TitleSec name="上架物資" color="#7BBFBA" />
+      <div style={{ marginTop: "-80px" }}>
+        <TitleSec name="上架物資" color="#7BBFBA" />
       </div>
       <Container style={{ marginBottom: "15px" }}>
         <Stepper activeStep={1} alternativeLabel>
@@ -144,6 +147,34 @@ function UploadGoods() {
                     {tasks.map((task) => (
                       <option value={task.data.name}>{task.data.name}</option>
                     ))}
+                  </Form.Select>
+                  <Form.Select
+                    style={{ margin: "35px auto 0% auto", width: "80%" }}
+                    required
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option value="">請選擇物資類別</option>
+
+                    <option value="保健食品">保健食品</option>
+                    <option value="食品飲料">食品飲料</option>
+                    <option value="生鮮蔬果">生鮮蔬果</option>
+
+                    <option value="文具用品">文具用品</option>
+
+                    <option value="個人清潔">個人清潔</option>
+                    <option value="紙棉用品">紙棉用品</option>
+                    <option value="日常清潔">生活清潔</option>
+                    
+                    <option value="質優帽襪">質優帽襪</option>
+                    <option value="內著衣賞">內著衣賞</option>
+                 
+                    <option value="生活五金">生活五金</option>
+                    <option value="生活雜貨">生活雜貨</option>
+                    
+                    <option value="家庭護理">家庭護理</option>
+                    <option value="兒童保健">兒童用品</option>
+                    <option value="寵物專屬">寵物專屬</option>
+                  
                   </Form.Select>
                   <FormControl
                     style={{ margin: "35px auto 35px auto", width: "80%" }}

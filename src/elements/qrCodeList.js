@@ -75,6 +75,9 @@ function Task({
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  console.log("AllQrcode / qrCodeList:", QRcodeId);
+
   return (
     <div>
       {user.uid === uid && (
@@ -86,10 +89,9 @@ function Task({
                 padding: "30px 5px 30px 0px",
                 color: "#002B5B",
                 width: "100%",
-                
+
               }}
             >
-
               <Card.Body style={contentStyle}>
                 <div className="grid_qrcode">
                   <div>

@@ -21,6 +21,8 @@ import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
+import { Chart } from "react-google-charts";
+import ExpChart from "../elements/expChart"
 
 function Stores({ id, name, phone, address, num }) {
   const uploadStoreData = (item) => {
@@ -127,11 +129,20 @@ function UploadGoods() {
       );
     });
   }, []);
-
+  // const data = [
+  //   ["Element", "合作店家累積上架費", { role: "style" }],
+  //   ["7-ELEVEN", 6, "#66cccc"],
+  //   ["愛買", 5, "#99d8b9"],
+  //   ["寶雅五金行", 0, "#77a88d"],
+  //   ["家樂福", 5, "color: #ff9966"],
+  //   ["全聯福利中心Pxmart", 4, "color: #fe7a7b"],
+  //   ["全家便利商店", 2, "color: #ffcc66"],
+  //   ["寶雅生活館", 5, "color: #ccabd8"],
+  // ];
   return (
     <div>
       <Navbar />
-      <div style={{marginTop: "-80px"}}>
+      <div style={{ marginTop: "-80px" }}>
         <TitleSec name="合作店家一覽表" color="#7BBFBA" />
       </div>
       <br />
@@ -162,6 +173,12 @@ function UploadGoods() {
                 </tbody>
               </Table>
             </Card.Body>
+          </Card>
+        </div>
+        <div style={{marginBottom: "50px"}}>
+          <Card style={cardStyle}>
+            {/* <Chart chartType="ColumnChart" width="100%" height="400px" data={data} /> */}
+            <ExpChart />
           </Card>
         </div>
       </Container>

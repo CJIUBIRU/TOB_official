@@ -76,6 +76,7 @@ function UploadDemand() {
           name: demandList[i].name,
           availability: 0,
           charity: demandList[i].charityName,
+          category: demandList[i].charityCategory,
           description: demandList[i].demandInfo,
           quantity: demandList[i].count,
           received: 0,
