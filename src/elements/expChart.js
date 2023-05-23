@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { db } from "../utils/firebase";
-import app from "../utils/firebase";
-import { firebase } from "../utils/firebase";
 import { Chart } from "react-google-charts";
+import { collection, query, onSnapshot } from "firebase/firestore";
 
-function UploadGoods() {
+function ExpChart() {
     const cardStyle = {
         width: "90%",
         color: "black",
@@ -22,26 +21,46 @@ function UploadGoods() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const db = app.firestore();
-            const collectionRef = db.collection('stores');
+        let originalData = []
+        const colorMap = [
+            "#66cccc",
+            "#99d8b9",
+            "#77a88d",
+            "#ff9966",
+            "#fe7a7b",
+            "#ffcc66",
+            "#ccabd8"
+        ];
+        const q = query(collection(db, "supply"))
 
-            try {
-                const snapshot = await collectionRef.get();
-                const formattedData = [['Element', '合作店家累積上架費', { role: 'style' }]];
-
-                snapshot.forEach((doc) => {
-                    const { name, exp, color } = doc.data();
-                    formattedData.push([name, exp, color]);
+        onSnapshot(q, (querySnapshot) => {
+            querySnapshot.docs.forEach((doc) => {
+                originalData.push({
+                    ...doc.data(),
                 });
+            });
 
-                setData(formattedData);
-            } catch (error) {
-                console.log('Error fetching data:', error);
+            const storeCounts = {};
+
+            for (const item of originalData) {
+                if (storeCounts[item.store]) {
+                    storeCounts[item.store]++;
+                } else {
+                    storeCounts[item.store] = 1;
+                }
             }
-        };
 
-        fetchData();    
+            const data2 = [
+                ["Element", "合作店家累積上架費", { role: "style" }]
+            ];
+
+            for (const [index, store] of Object.keys(storeCounts).entries()) {
+                const color = colorMap[index];
+                data2.push([store, storeCounts[store], color]);
+            }
+
+            setData(data2)
+        });
     }, []);
     return (
         <div>
@@ -54,4 +73,4 @@ function UploadGoods() {
     );
 }
 
-export default UploadGoods;
+export default ExpChart;

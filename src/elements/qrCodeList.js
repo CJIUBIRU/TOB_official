@@ -76,8 +76,6 @@ function Task({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log("AllQrcode / qrCodeList:", QRcodeId);
-
   return (
     <div>
       {user.uid === uid && (

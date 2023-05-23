@@ -87,23 +87,6 @@ function OrgData({
           });
           alert("兌換成功");
           navigate("/allQrcode");
-
-          //扣掉demand的數量
-          const demandDocs = await Promise.all(
-            exchangeGoodsData.map((exchangeGood) =>
-              getDocs(query(collection(db, "demand"), where("id", "==", exchangeGood.docId)))
-            )
-          );
-          const batch = [];
-          demandDocs.forEach((docs, index) => {
-            const demandDoc = docs.docs[0];
-            const updateDemandObj = {
-              availability: demandDoc.data().availability - exchangeGoodsData[index].goodsNum,
-              received: demandDoc.data().received + exchangeGoodsData[index].goodsNum,
-            };
-            batch.push(updateDoc(doc(db, "demand", demandDoc.id), updateDemandObj));
-          });
-          await Promise.all(batch);
         }
         else{
           alert("您已兌換過物資，此QR碼已失效。");
@@ -278,17 +261,21 @@ function OrgData({
   );
 }
 
+
 function AllQrcodeData() {
   const navigate = useNavigate("");
+  
   const [user] = useAuthState(auth);
   if (!user) {
     navigate("/signIn");
   }
   const [tmp, setTmp] = useState([]);
   let org = JSON.parse(localStorage.getItem("orgData"));
-  //console.log(org.QRcodeId)
+
 
   useEffect(() => {
+    
+    console.log("AllQrcodeData/org:", org.QRcodeId)
 
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", org.QRcodeId));
 

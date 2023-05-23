@@ -10,7 +10,7 @@ import NavbarHome from "../elements/navbarHome";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { db } from "../utils/firebase";
-import { doc, setDoc, arrayUnion } from "firebase/firestore";
+import { doc, setDoc, arrayUnion, updateDoc } from "firebase/firestore";
 import shortUUID from "short-uuid";
 import Step from "@mui/material/Step";
 import Stepper from "@mui/material/Stepper";
@@ -88,7 +88,7 @@ const ExchangeGoodsSec = () => {
   const [QRcodeId, setQRcodeId] = useState(shortUUID.generate());
 
   const handleUploadDB = async () => {
-    // upload demand DB
+    // upload DB
     try {
       const filteredDetails = mergedDetails.map((item) => ({
         docId: item.docId,
@@ -114,6 +114,8 @@ const ExchangeGoodsSec = () => {
       );
 
       // console.log(tags)
+
+      //Qrcode
       await setDoc(doc(db, "QRcode", QRcodeId), {
         QRcodeId: QRcodeId,
         QRcodeDate: QRcodeDate,
@@ -124,6 +126,18 @@ const ExchangeGoodsSec = () => {
         exchangeGoodsData: arrayUnion(...filteredDetails),
         exchangeDate: null,
       });
+
+      //demand: 調整物資數量
+      
+      for (const item of mergedDetails) {
+        const demandDocRef = doc(db, "demand", item.docId);
+        await updateDoc(demandDocRef, {
+          availability: item.availability - item.exchangeQuantity,
+          received: item.received + item.exchangeQuantity,
+        });
+      }
+      
+
       // alert("生成兌換條碼成功。");
       navigate("/exchangeGoodsThird", { state: { QRcodeId: QRcodeId } });
     } catch (err) {
