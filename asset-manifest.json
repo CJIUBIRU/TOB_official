@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.3158e8e3.css",
-    "main.js": "/static/js/main.5db51a89.js",
+    "main.css": "/static/css/main.b1a3f671.css",
+    "main.js": "/static/js/main.c51de97d.js",
     "static/js/787.25a258f7.chunk.js": "/static/js/787.25a258f7.chunk.js",
-    "static/media/logo.PNG": "/static/media/logo.5d6d646a5683a4756c03.PNG",
+    "static/media/logo.png": "/static/media/logo.5d6d646a5683a4756c03.png",
     "static/media/tablet.jpg": "/static/media/tablet.6dc71b6586f7511f0ad6.jpg",
+    "static/media/logo2.png": "/static/media/logo2.c4a2d4a780265106758d.png",
+    "static/media/homePage.png": "/static/media/homePage.ae1c8d3444a462cd5c7b.png",
     "static/media/about1.png": "/static/media/about1.9b9836cdd56d6839dc47.png",
     "static/media/horizontal.PNG": "/static/media/horizontal.505fc2f2f867d7f66270.PNG",
     "static/media/home.jpg": "/static/media/home.8d57d47448268dba489e.jpg",
@@ -16,12 +18,12 @@
     "static/media/facebook_logos_PNG19748.png": "/static/media/facebook_logos_PNG19748.64a5b676fe8a2c960fa9.png",
     "static/media/機構切結書.docx": "/static/media/機構切結書.2867e24e3f0b18cd5d47.docx",
     "index.html": "/index.html",
-    "main.3158e8e3.css.map": "/static/css/main.3158e8e3.css.map",
-    "main.5db51a89.js.map": "/static/js/main.5db51a89.js.map",
+    "main.b1a3f671.css.map": "/static/css/main.b1a3f671.css.map",
+    "main.c51de97d.js.map": "/static/js/main.c51de97d.js.map",
     "787.25a258f7.chunk.js.map": "/static/js/787.25a258f7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3158e8e3.css",
-    "static/js/main.5db51a89.js"
+    "static/css/main.b1a3f671.css",
+    "static/js/main.c51de97d.js"
   ]
 }
