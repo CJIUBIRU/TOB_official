@@ -1,71 +1,67 @@
-import { clientsClaim } from 'workbox-core';
-import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
-import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+// 定義快取的資源
+const cacheName = 'my-app-cache';
+const cacheFiles = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/path/to/your/assets',
+  // 加入其他需要快取的資源
+];
 
-clientsClaim();
-
-precacheAndRoute(self.__WB_MANIFEST);
-
-const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
-registerRoute(
-  ({ request, url }) => {
-    if (request.mode !== 'navigate') {
-      return false;
-    }
-
-    if (url.pathname.startsWith('/_')) {
-      return false;
-    }
-
-    if (url.pathname.match(fileExtensionRegexp)) {
-      return false;
-    }
-
-    return true;
-  },
-  createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
-);
-
-registerRoute(
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
-  new StaleWhileRevalidate({
-    cacheName: 'images',
-    plugins: [
-      new ExpirationPlugin({ maxEntries: 50 }),
-    ],
-  })
-);
-
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
+// 安裝 Service Worker
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(cacheName).then(cache => {
+      return cache.addAll(cacheFiles);
+    })
+  );
 });
 
-// 其他自訂的 Service Worker 邏輯可以放在這裡
+// 啟用 Service Worker
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(name => {
+          if (name !== cacheName) {
+            return caches.delete(name);
+          }
+        })
+      );
+    })
+  );
+});
 
+// 監聽網路請求，並從快取中回應資源
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
 
-// /**
-//  * @fileoverview
-//  * @externs
-//  */
+// 監聽離線狀態，顯示離線頁面
+self.addEventListener('offline', event => {
+  event.respondWith(
+    caches.match('/offline.html')
+  );
+});
 
-// /**
-//  * @type {string}
-//  */
-// const self = "";
+// 註冊 Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/service-worker.js', { type: 'module' })
+      .then(registration => {
+        console.log('Service Worker registered: ', registration);
+      })
+      .catch(error => {
+        console.log('Service Worker registration failed: ', error);
+      });
+  });
+}
 
-// /**
-//  * @type {Object}
-//  */
-// const global = {};
-
-// /**
-//  * @type {Object}
-//  */
-// const __WB_MANIFEST = {};
 
 // /* eslint-disable no-restricted-globals */
 
