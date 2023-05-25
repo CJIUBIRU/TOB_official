@@ -31,17 +31,9 @@ function NavbarComp() {
   const settingsSec = {
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
-  };
-  const report1 = {
-    width: "100%",
-    height: "550px",
-    textAlign: "center",
-    lineHeight: "280px",
-    backgroundColor: "#FEF1E6",
-    objectFit: "cover",
   };
   const report2 = {
     height: "300px",
@@ -128,13 +120,13 @@ function NavbarComp() {
       {/* <div><img src={HomePage} alt="HomePage"></img></div> */}
       <div style={bodyStyle}>
         <div style={{ height: "70px" }}></div>
-        <div style={{ backgroundColor: "#fef1e6" }}>
+        <div className="bigReport">
           <Slider {...settings}>
             {charityData2.map((item, index) => (
               <div key={index}>
                 <center>
                   <img
-                    style={report1}
+                    className="report1"
                     src={item.file?.img?.photo}
                     alt={item.info?.name}
                   />
@@ -146,35 +138,35 @@ function NavbarComp() {
         <img style={{ width: "100%", marginTop: "35px" }} src={HomePage} alt="bgPhoto" />
 
         <div>
-          <Container>
-            <div
-              style={{
-                margin: "40px 0px 0px 0px",
-                padding: "20px 0px 30px 0px",
-              }}
-            >
-              <h5 style={titleSec}>最新消息</h5>
-              <Slider {...settingsSec}>
-                {charityData.length === 6
-                  ? charityData.map((item, index) => (
+          <div
+            style={{
+              margin: "40px 0px 0px 0px",
+              padding: "20px 0px 30px 0px",
+            }}
+          >
+            <Container>
+              <h5 style={titleSec}>大家都在看</h5>
+            </Container>
+            <Slider {...settingsSec}>
+              {charityData.length === 6
+                ? charityData.map((item, index) => (
+                  <div key={index}>
+                    <img
+                      className="report2"
+                      src={item.file?.img?.photo}
+                      alt={item.info?.name}
+                    />
+                  </div>
+                ))
+                : Array(3)
+                  .fill()
+                  .map((_, index) => (
                     <div key={index}>
-                      <img
-                        style={report2}
-                        src={item.file?.img?.photo}
-                        alt={item.info?.name}
-                      />
+                      <h4 style={report2}>Loading...</h4>
                     </div>
-                  ))
-                  : Array(3)
-                    .fill()
-                    .map((_, index) => (
-                      <div key={index}>
-                        <h4 style={report2}>Loading...</h4>
-                      </div>
-                    ))}
-              </Slider>
-            </div>
-          </Container>
+                  ))}
+            </Slider>
+          </div>
         </div>
         <div style={{ backgroundColor: "white" }}>
           <Container>

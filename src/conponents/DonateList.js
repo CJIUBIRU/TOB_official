@@ -33,14 +33,14 @@ const DonateList = () => {
   const donPageStyle = {
     marginTop: "70px",
   };
- 
+
 
   const [details, setDetails] = useState([]);
 
   useEffect(() => {
     let q = collection(db, "demand");
-     //搜尋過濾第三步
-     if (searchCategory) {
+    //搜尋過濾第三步
+    if (searchCategory) {
       q = query(q, where("category", "==", searchCategory));
     }
 
@@ -57,7 +57,7 @@ const DonateList = () => {
         }))
       );
     });
-  }, [searchCategory,searchName]);
+  }, [searchCategory, searchName]);
 
 
   const [donateCart, setDonateCart] = useState([]);
@@ -149,24 +149,12 @@ const DonateList = () => {
               />
             ))}
           {user ? (
-            <div
-              style={{
-                marginTop: "25px",
-                marginBottom: "40px",
-                marginLeft: "45%",
-                marginRight: "55%",
-              }}
-            >
+            <center style={{margin: "30px"}}>
               <ButtonLink to="/donateListSec" name="下一步" color="#f58d59" />
-            </div>
+            </center>
           ) : (
-            <div
-              style={{
-                marginTop: "25px",
-                marginBottom: "40px",
-                marginLeft: "43%",
-              }}
-            >
+
+            <center>
               <button
                 style={{
                   color: "#ffffff",
@@ -182,7 +170,7 @@ const DonateList = () => {
               >
                 登入後可進行下一步
               </button>
-            </div>
+            </center>
           )}
         </Container>
       </div>

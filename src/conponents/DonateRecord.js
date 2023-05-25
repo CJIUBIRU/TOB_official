@@ -16,7 +16,7 @@ function UploadDemand() {
     navigate("/signIn");
   }
   return (
-    <div>
+    <div style={{marginBottom: "50px"}}>
       <NavbarMember />
       <TitleSec name="認購紀錄" color="#F4D19B"/>
       <Container>

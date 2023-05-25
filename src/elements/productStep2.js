@@ -17,16 +17,6 @@ function Product({
   setDonateList,
   setState,
 }) {
-  const card = {
-    marginBottom: "20px",
-    marginLeft: "15%",
-    marginRight: "15%",
-    padding: "40px 40px 40px 40px",
-    color: "#002B5B",
-    width: "70%",
-    display: "flex",
-    flexDirection: "row",
-  };
   const contentStyle = {
     textAlign: "left",
     marginLeft: "30px",
@@ -188,63 +178,69 @@ function Product({
 
   return (
     <div>
-      <Card style={card} onChange={handleData}>
-        <Card.Img style={goodsImgStyle} variant="top" src={pic} />
-        <Card.Body style={contentStyle}>
-          <Card.Title>
-            物資名稱：<b>{name}</b>
-          </Card.Title>
-          <hr></hr>
-          <Card.Text style={{ color: "#6C6C6C" }}>
-            需求機構：{charity}
-            <br />
-            需求物資數量：{quantity}
-            <br />
-            單價：${price}
-            <br />
-            需求說明：{description}
-            <br />
-            物資提供商家：
-            <a style={demandHrefStyle} href="#">
-              {store}
-            </a>
-          </Card.Text>
-          <hr></hr>
-          <Card.Text>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                lineHeight: "30px",
-              }}
-            >
-              認購數量：
-              <Button
-                style={btnDashStyle}
-                variant="primary"
-                onClick={handleMinus}
-              >
-                -
-              </Button>
-              <Form.Control
-                type="text"
-                style={inputStyle}
-                value={count}
-                onChange={handleChange}
-              />
-              <Button
-                style={btnAddStyle}
-                variant="primary"
-                onClick={handlePlus}
-              >
-                +
-              </Button>
-            </div>
-            <hr></hr>
-            <p style={{textAlign: "right", marginBottom: "-15px", color: "black"}}>小計：${subtotal}</p>
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <center>
+        <Card className="productStep2" onChange={handleData}>
+          <div>
+            <Card.Img style={goodsImgStyle} variant="top" src={pic} />
+          </div>
+          <div>
+            <Card.Body style={contentStyle}>
+              <Card.Title>
+                物資名稱：<b>{name}</b>
+              </Card.Title>
+              <hr></hr>
+              <Card.Text style={{ color: "#6C6C6C" }}>
+                需求機構：{charity}
+                <br />
+                需求物資數量：{quantity}
+                <br />
+                單價：${price}
+                <br />
+                需求說明：{description}
+                <br />
+                物資提供商家：
+                <a style={demandHrefStyle} href="#">
+                  {store}
+                </a>
+              </Card.Text>
+              <hr></hr>
+              <Card.Text>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    lineHeight: "30px",
+                  }}
+                >
+                  認購數量：
+                  <Button
+                    style={btnDashStyle}
+                    variant="primary"
+                    onClick={handleMinus}
+                  >
+                    -
+                  </Button>
+                  <Form.Control
+                    type="text"
+                    style={inputStyle}
+                    value={count}
+                    onChange={handleChange}
+                  />
+                  <Button
+                    style={btnAddStyle}
+                    variant="primary"
+                    onClick={handlePlus}
+                  >
+                    +
+                  </Button>
+                </div>
+                <hr></hr>
+                <p style={{ textAlign: "right", marginBottom: "-15px", color: "black" }}>小計：${subtotal}</p>
+              </Card.Text>
+            </Card.Body>
+          </div>
+        </Card>
+      </center>
     </div>
   );
 }

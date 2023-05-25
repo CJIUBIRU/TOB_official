@@ -26,6 +26,7 @@ import { Card } from "react-bootstrap";
 import QrCodeList from "../elements/qrCodeList";
 import ManagerProveList from "../elements/managerProveList";
 import AllGoodsList from "../elements/allGoodsList";
+import "../App.css";
 
 function Task({ id, email, level }) {
   const [user] = useAuthState(auth);
@@ -374,23 +375,23 @@ function Task({ id, email, level }) {
             >
               {charityData.length === 3
                 ? charityData.map((item, index) => (
-                    <div key={index}>
-                      <center>
-                        <img
-                          style={report1}
-                          src={item.file?.img?.photo}
-                          alt={item.info?.name}
-                        />
-                      </center>
-                    </div>
-                  ))
+                  <div key={index}>
+                    <center>
+                      <img
+                        className="report1"
+                        src={item.file?.img?.photo}
+                        alt={item.info?.name}
+                      />
+                    </center>
+                  </div>
+                ))
                 : charityData2.map((item, index) => (
-                    <div key={index}>
-                      <center>
-                        <img style={report1} src={item.photo} alt={item.name} />
-                      </center>
-                    </div>
-                  ))}
+                  <div key={index}>
+                    <center>
+                      <img className="report1" src={item.photo} alt={item.name} />
+                    </center>
+                  </div>
+                ))}
             </Slider>
           </div>
           <Container>
@@ -408,13 +409,9 @@ function Task({ id, email, level }) {
       {email === user.email && level === "admin" && (
         <Container style={{ marginBottom: "50px" }}>
           <div
-            style={{
-              marginTop: "100px",
-              display: "flex",
-              flexDirection: "row",
-            }}
+            className="adminHome"
           >
-            <div style={{ margin: "10px", width: "70%" }}>
+            <div>
               <Card style={{ borderLeft: "3.5px solid #069a8e" }}>
                 <Card.Header style={{ color: "#069a8e", fontWeight: "bold" }}>
                   申請資料審核
@@ -424,7 +421,7 @@ function Task({ id, email, level }) {
                 </Card.Body>
               </Card>
             </div>
-            <div style={{ margin: "10px", width: "30%" }}>
+            <div>
               <Card style={{ borderLeft: "3.5px solid #069a8e" }}>
                 <Card.Header style={{ color: "#069a8e", fontWeight: "bold" }}>
                   物資一覽表

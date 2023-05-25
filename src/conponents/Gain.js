@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Navbar from "../elements/navbar";
+import Navbar from "../elements/navbarMember";
 import NavbarHome from "../elements/navbarHome";
 import TitleSec from "../elements/titleSec";
 import {

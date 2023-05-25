@@ -191,6 +191,47 @@
     box-shadow: 5px 5px 10px gray;
     border-radius: 30px;
   }
+  .report1 {
+    width: 100%;
+    text-align: center;
+    line-height: 280px;
+    background-color: #FEF1E6;
+    object-fit: cover;
+  }
+  .report2 {
+    width: 100%;
+    text-align: center;
+    line-height: 280px;
+    background-color: #FEF1E6;
+    font-size: 18px;
+    margin: 5px;
+  }
+  .productStepCard {
+    width: 90px;
+  }
+  .productStep2 {
+    margin-bottom: 20px;
+    padding: 40px 0px 40px 0px;
+    color: #002B5B;
+    width: 70%;
+  }
+  .productStep3 {
+    margin-bottom: 20px;
+    padding: 40px 0px 40px 0px;
+    color: #002B5B;
+    width: 70%;
+  }
+  .record {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+  .adminHome {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
 }
 
 @media (min-width: 768px){
@@ -325,6 +366,49 @@
     margin: -150px 0px 0px -225px;
     box-shadow: 5px 5px 10px gray;
     border-radius: 30px;
+  }
+  .report1 {
+    width: 100%;
+    height: 550px;
+    text-align: center;
+    line-height: 280px;
+    background-color: #FEF1E6;
+    object-fit: cover;
+  }
+  .report2 {
+    height: 300px;
+    text-align: center;
+    line-height: 280px;
+    background-color: #FEF1E6;
+    font-size: 18px;
+    margin: 5px;
+  }
+  .productStep1 {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  .productStep2 {
+    margin-bottom: 20px;
+    padding: 40px 40px 40px 40px;
+    color: #002B5B;
+    width: 45%;
+  }
+  .productStep3 {
+    margin-bottom: 20px;
+    padding: 40px 40px 40px 40px;
+    color: #002B5B;
+    width: 45%;
+  }
+  .record {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+  .adminHome {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-gap: 10px;
   }
 }
 

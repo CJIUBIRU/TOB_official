@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import img from "../img/tablet.jpg";
 import Card from "react-bootstrap/Card";
 
-function Product({ id, name, pic, store, price, quantity, received, charity, description, donateCart, setDonateCart}) {
+function Product({ id, name, pic, store, price, quantity, received, charity, description, donateCart, setDonateCart }) {
   const card = {
     marginBottom: "15px",
     marginLeft: "15px",
@@ -23,8 +23,6 @@ function Product({ id, name, pic, store, price, quantity, received, charity, des
   const goodsImgStyle = {
     width: "200px",
     height: "200px",
-    marginLeft: "15%",
-    marginRight: "75%",
   };
 
   const newQuantity = Number(quantity) - Number(received);
@@ -32,7 +30,7 @@ function Product({ id, name, pic, store, price, quantity, received, charity, des
   const [buttonStyle, setButtonStyle] = useState({
     border: "none",
     borderRadius: "10px",
-    width: "400px",
+    width: "350px",
     margin: "15px",
   });
   const [state, setState] = useState(false);
@@ -51,10 +49,10 @@ function Product({ id, name, pic, store, price, quantity, received, charity, des
         ...buttonStyle,
         backgroundColor: "lightgreen",
         borderRadius: "10px",
-        width: "400px",
+        width: "350px",
         margin: "15px",
       });
-      donateCart.push({ id, name, pic, store, price, charity, description, newQuantity, count: 1, subtotal: price});
+      donateCart.push({ id, name, pic, store, price, charity, description, newQuantity, count: 1, subtotal: price });
       localStorage.setItem("donateCart", JSON.stringify(donateCart));
       let newDonateCart = [...donateCart];
       localStorage.setItem("donateList", JSON.stringify(newDonateCart));
@@ -63,7 +61,7 @@ function Product({ id, name, pic, store, price, quantity, received, charity, des
       setButtonStyle({
         border: "none",
         borderRadius: "10px",
-        width: "400px",
+        width: "350px",
         margin: "15px",
       });
       setState(false);
@@ -78,10 +76,10 @@ function Product({ id, name, pic, store, price, quantity, received, charity, des
   }
 
   return (
-    <div style={{ display: "inline-block" }}>
+    <div className="productStep1">
       <button style={buttonStyle} onClick={handleSelect}>
         <Card style={card}>
-          <Card.Img style={goodsImgStyle} variant="top" src={pic} />
+          <center><Card.Img style={goodsImgStyle} variant="top" src={pic} /></center>
           <Card.Body style={contentStyle}>
             <Card.Title>
               物資名稱：<b>{name}</b>

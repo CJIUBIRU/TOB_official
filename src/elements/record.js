@@ -125,7 +125,7 @@ function Record() {
     });
   }, [user]);
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridGap: "10px" }}>
+    <div className="record">
       <div>
         <div>
           <Alert key='success' variant='success'>
