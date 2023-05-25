@@ -39,7 +39,7 @@ function Task({ id, name, charity, quantity, description, store, price, pic }) {
             <div>需求數量：10</div>
             <div>需求說明：{description}</div>
             <div>物資提供商家：{store}</div>
-            <div>單價：${price}／台</div>
+            <div>單價：${price}</div>
           </Card.Text>
         </Card.Body>
       </Card>

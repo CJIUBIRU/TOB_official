@@ -20,8 +20,13 @@ import Step from "@mui/material/Step";
 import Stepper from "@mui/material/Stepper";
 import StepLabel from "@mui/material/StepLabel";
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const DonateList = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [user] = useAuthState(auth);
   const [searchName, setSearchName] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
@@ -33,10 +38,7 @@ const DonateList = () => {
   const donPageStyle = {
     marginTop: "70px",
   };
-
-
   const [details, setDetails] = useState([]);
-
   useEffect(() => {
     let q = collection(db, "demand");
     //搜尋過濾第三步
@@ -111,7 +113,6 @@ const DonateList = () => {
                 <option value="動物保護">動物保護</option>
               </Form.Select>
             </div>
-
             <div>
               <Form.Control
                 style={{ width: "60%", marginLeft: "2%" }}
@@ -121,7 +122,30 @@ const DonateList = () => {
                 placeholder="搜尋機構名稱"
               />
             </div>
-          </div><br></br>
+          </div>
+          {user && (
+            <center>
+              <Button style={{ backgroundColor: "#f58d59", border: "none", borderRadius: "30px", fontWeight: "bold", marginTop: "35px" }} variant="primary" onClick={handleShow}>
+                機構認購次數統計
+              </Button>
+            </center>
+          )}
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+          <br></br>
           {details
             .filter((item) => {
               if (searchCategory && item.data.category !== searchCategory) {
@@ -149,7 +173,7 @@ const DonateList = () => {
               />
             ))}
           {user ? (
-            <center style={{margin: "30px"}}>
+            <center style={{ margin: "30px" }}>
               <ButtonLink to="/donateListSec" name="下一步" color="#f58d59" />
             </center>
           ) : (
@@ -166,6 +190,8 @@ const DonateList = () => {
                   textAlign: "center",
                   height: "35px",
                   fontWeight: "bold",
+                  marginBottom: "50px",
+                  marginTop: "30px"
                 }}
               >
                 登入後可進行下一步

@@ -125,7 +125,7 @@ function Product({ id, name, pic, store, price, quantity, received, charity, des
   //             {store}
   //           </a>
   //           <br />
-  //           單價：${price}／台
+  //           單價：${price}
   //         </Card.Text>
   //       </Card.Body>
   //     </Card>

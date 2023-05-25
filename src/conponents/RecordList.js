@@ -66,7 +66,7 @@ function RecordList() {
                 奕慈麵包坊
               </a>
               <br />
-              單價：$203／台
+              單價：$203
             </Card.Text>
           </Card.Body>
         </Card>
