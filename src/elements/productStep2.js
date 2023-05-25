@@ -31,7 +31,7 @@ function Product({
   };
   const inputStyle = {
     border: "1.5px solid #90AACB",
-    width: "10%",
+    width: "50px",
     height: "30px",
     textAlign: "center",
   };
