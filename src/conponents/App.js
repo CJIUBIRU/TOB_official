@@ -66,6 +66,8 @@ import QrCodeList from "../elements/qrCodeList";
 import SetMailData from "./SetMailData";
 import HomeNo from "./HomeNo";
 import Home from "./Home";
+import UploadOpenData from "./UploadOpenData";
+import UploadOpenDataSuccess from "./UploadOpenDataSuccess";
 
 function App() {
   return (
@@ -134,8 +136,10 @@ function App() {
           <Route path="/exchangeGoodsSec" element={<ExchangeGoodsSec />} />
           <Route path="/exchangeGoodsThird" element={<ExchangeGoodsThird />} />
           <Route path="/aboutUs" element={<AboutUs />} />
-          <Route path="/setMailData" element={ <SetMailData />} />
-          <Route path="/home" element={ <Home />} />
+          <Route path="/setMailData" element={<SetMailData />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/uploadOpenData" element={<UploadOpenData />} />
+          <Route path="/uploadOpenDataSuccess" element={<UploadOpenDataSuccess />} />
         </Routes>
       </BrowserRouter>
     </div>

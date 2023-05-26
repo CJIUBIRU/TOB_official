@@ -99,6 +99,15 @@ function NavbarComp() {
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
+                  to="/UploadOpenData"
+                  href="#action/3.2"
+                  style={{ color: "#069A8E", fontSize: "17px" }}
+                >
+                  上傳公開資料
+                </Nav.Link>
+
+                <Nav.Link
+                  as={Link}
                   to="/addStores"
                   href="#action/3.2"
                   style={{ color: "#069A8E", fontSize: "17px" }}
