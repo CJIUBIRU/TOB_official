@@ -86,14 +86,14 @@ function Task({ id, email, level }) {
   const [charityData2, setCharityData2] = useState([
     {
       id: "001",
-      name: "財團法人普仁青年關懷基金會",
+      name: "社團法人臺中市響響輔助科技協會",
       photo:
-        "https://www.post.gov.tw/post/FileCenter/post_ww2/post_docdata_att/att_content/B396C802-0F3C-461A-BFAA-5C77307E3122/D243C0EB-23C6-4E7F-AFE3-DECBDA5D243F.jpg",
+        "https://firebasestorage.googleapis.com/v0/b/donation-platform-54f2b.appspot.com/o/Photo%2F%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E8%87%BA%E4%B8%AD%E5%B8%82%E9%9F%BF%E9%9F%BF%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83.png?alt=media&token=ca1b5491-0bd0-4424-95e1-e4b5c537c0a2",
     },
     {
       id: "002",
       name: "財團法人高雄市私立星星兒社會福利基金會",
-      photo: "https://www.starfamily.org.tw/assets/upload/adver/30.webp",
+      photo: "https://firebasestorage.googleapis.com/v0/b/donation-platform-54f2b.appspot.com/o/Photo%2F%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E5%85%A8%E7%90%83%E5%B0%8F%E7%B4%85%E5%B8%BD%E5%8D%94%E6%9C%83.png?alt=media&token=d497d429-e175-470a-a182-bec5ef1718e7",
     },
   ]);
   console.log(charityData);
@@ -373,7 +373,7 @@ function Task({ id, email, level }) {
                 autoplay: true,
               }}
             >
-              {charityData.length === 3
+              {charityData.length >= 1
                 ? charityData.map((item, index) => (
                   <div key={index}>
                     <center>

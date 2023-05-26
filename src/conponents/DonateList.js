@@ -30,6 +30,10 @@ const DonateList = () => {
   const [user] = useAuthState(auth);
   const [searchName, setSearchName] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
+  const [donateCart, setDonateCart] = useState([]);
+  const [finalCharityList, setFinalCharityList] = useState();
+  console.log(finalCharityList);
+
 
   const handleSearchChange = (value) => {
     setSearchName(value);
@@ -61,8 +65,53 @@ const DonateList = () => {
     });
   }, [searchCategory, searchName]);
 
+  useEffect(() => {
+    let charityList = [];
+    let donateList2 = [];
+    const q2 = query(collection(db, "charity"), where("info.status", "==", "已啟用"));
+    onSnapshot(q2, (querySnapshot) => {
+      querySnapshot.docs.forEach((doc) => {
+        const { info } = doc.data();
+        charityList.push({ name: info.name, count: 0 });
+      })
 
-  const [donateCart, setDonateCart] = useState([]);
+      const q3 = query(collection(db, "donate"), where("paymentStatus", "==", "已付款"));
+      onSnapshot(q3, (querySnapshot) => {
+        querySnapshot.docs.forEach((doc) => {
+          const { donateList } = doc.data();
+          donateList2.push(donateList);
+        })
+
+        let newCharityList = [];
+
+        // 初始化 newCharityList
+        for (const item of charityList) {
+          newCharityList.push({
+            name: item.name,
+            count: 0
+          });
+        }
+
+        // 更新 newCharityList 中的次數
+        for (const list of donateList2) {
+          for (const item of list) {
+            const charityName = item.charity;
+            const foundCharity = newCharityList.find((charity) => charity.name === charityName);
+            if (foundCharity) {
+              foundCharity.count++;
+            }
+          }
+        }
+
+        // 按照 count sorting
+        newCharityList.sort((a, b) => b.count - a.count);
+
+        setFinalCharityList(newCharityList);
+      });
+    });
+  }, []);
+
+
 
   return (
     <div>
@@ -133,16 +182,24 @@ const DonateList = () => {
 
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Title>機構認購次數統計</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+              <p>認購時，不妨多看看排名較低的合作機構唷！</p>
+              <hr />
+              {finalCharityList &&
+                finalCharityList.map((item, index) => (
+                  <p key={index}>{index + 1}. {item.name}</p>
+                ))
+              }
+            </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
-                Close
+                關閉
               </Button>
-              <Button variant="primary" onClick={handleClose}>
+              {/* <Button variant="primary" onClick={handleClose}>
                 Save Changes
-              </Button>
+              </Button> */}
             </Modal.Footer>
           </Modal>
           <br></br>

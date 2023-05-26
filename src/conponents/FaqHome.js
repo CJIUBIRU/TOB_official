@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../elements/navbar";
+import Navbar from "../elements/navbarMember";
 import NavbarHome from "../elements/navbarHome";
 import TitleSec from "../elements/titleSec";
 import { useAuthState } from "react-firebase-hooks/auth";
