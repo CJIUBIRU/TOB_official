@@ -23,16 +23,10 @@ import Qrcode_pic from "../elements/qrcode_pic";
 import { useLocation } from 'react-router-dom';
 
 function OrgData({
+  QRcodeDate,
   QRcodeId,
   charityName,
-  storeName,
-  qrcodeDate,
-  deadlineDate,
-  goodsName,
-  goodsPicture,
-  goodsNum,
-  status,
-  exchangeDate,
+  exchangeData,
 }) {
 
   const location = useLocation();
@@ -80,6 +74,7 @@ function OrgData({
 
       if (qrcodeData.exists()) {
         const exchangeGoodsData = qrcodeData.data().exchangeGoodsData;
+
         if (qrcodeData.data().status === "未領取") {
           await updateDoc(qrcodeRef, {
             "status": "已領取",
@@ -95,7 +90,6 @@ function OrgData({
       }
     }
     else {
-      
       navigate("/allQrcode");
     }
   };
@@ -182,13 +176,10 @@ function OrgData({
 
   return (
     <Card.Body>
-      {/* <h3>value={value}</h3>
-      <h3>QRcodeId={QRcodeId}</h3> */}
 
       <h4 style={h4Style}>一、兌換條碼：</h4>
 
       <center><Qrcode_pic QRcodeId={QRcodeId}></Qrcode_pic></center>
-
 
       <h4 style={h4Style}>二、兌換資訊：</h4>
       {tmp.map((item, index) => (
@@ -264,18 +255,22 @@ function OrgData({
 
 function AllQrcodeData() {
   const navigate = useNavigate("");
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const value = searchParams.get("value");
   
-  const [user] = useAuthState(auth);
-  if (!user) {
-    navigate("/signIn");
-  }
   const [tmp, setTmp] = useState([]);
   let org = JSON.parse(localStorage.getItem("orgData"));
 
-
   useEffect(() => {
     
-    console.log("AllQrcodeData/org:", org.QRcodeId)
+    //console.log("org.QRcodeId:", org?.QRcodeId);
+
+    if(value) {
+      org = { ...org, QRcodeId: value };
+      localStorage.setItem("orgData", JSON.stringify(org));
+    }
 
     const q = query(collection(db, "QRcode"), where("QRcodeId", "==", org.QRcodeId));
 
@@ -287,7 +282,7 @@ function AllQrcodeData() {
         }))
       );
     });
-  }, []);
+  }, [org?.QRcodeId, value]);
 
 
   const cardStyle = {
@@ -305,17 +300,16 @@ function AllQrcodeData() {
 
   return (
     <div>
-      {/* <Navbar /> */}
-      {/* <div style={{ marginTop: "-80px" }}>
-        <TitleSec name="我的兌換條碼明細" color="#90aacb" />
-      </div> */}
       <Card style={cardStyle}>
         {tmp.map((item, index) => (
           <OrgData
             key={index}
-            id={item.id}
-            QRcodeId={item.QRcodeId}
+            QRcodeId={value ? value : item.id}
+            QRcodeDate={item.qrcodeDate}
+            charityName={item.charityName}
+            exchangeData={item.exchangeDate}
           />
+
         ))}
       </Card>
     </div>
